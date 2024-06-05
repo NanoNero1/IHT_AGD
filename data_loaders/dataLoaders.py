@@ -2,6 +2,7 @@
 # SOURCE: https://github.com/pytorch/examples/blob/main/mnist/main.py
 
 from torchvision import datasets, transforms
+import torch
 
 
 """ Desc: The MNIST Dataset, sourced from PyTorch, this dataset is for classification of handwritten digits
