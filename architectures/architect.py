@@ -1,6 +1,9 @@
 class hi:
+    def __init__(self):
+        self.nice = nice
+        pass
     
-    nice = 'nice'
+    #self.nice = 'nice'
 
     def hi(self):
         print("hi")
