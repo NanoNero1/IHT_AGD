@@ -7,6 +7,10 @@ def printNice():
 
 def printBad():
     print('bad')
-    
+
+
+
+def printLol():
+    print('lol')
 
 
