@@ -1,6 +1,8 @@
 # SOURCE: https://github.com/pytorch/examples/tree/main/mnist
 
 import torch
+
+### note to self: I think I also need to import it here natively, no?
 #import trainingMetrics
 
 """ Desc: function for one training epoch. At each step, we query the optimizer and log the training loss to Neptune.
