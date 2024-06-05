@@ -1,6 +1,7 @@
 # SOURCE: https://github.com/pytorch/examples/tree/main/mnist
 
 import torch
+import torch.nn.functional as F
 
 ### note to self: I think I also need to import it here natively, no?
 #import trainingMetrics
