@@ -1,4 +1,3 @@
 class hi:
-    def hi():
+    def hi(self):
         print("hi")
-        
