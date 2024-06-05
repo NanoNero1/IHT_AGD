@@ -1,3 +1,5 @@
+print("lalalalalalal")
+
 class hi:
     def __init__(self):
         self.nice = nice
