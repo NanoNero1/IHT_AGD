@@ -1,3 +1,8 @@
+#SOURCE: https://pytorch.org/tutorials/beginner/basics/buildmodel_tutorial.html
+
+#SOURCE: https://colab.research.google.com/github/omarsar/pytorch_notebooks/blob/master/pytorch_quick_start.ipynb#scrollTo=3_0Vjq2RHlph
+
+
 import torch.nn as nn
 import torch.nn.functional as F
 import torch
