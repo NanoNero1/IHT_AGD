@@ -14,3 +14,4 @@ def printLol():
     print('lol')
 
 
+seeVariable = 'see'
