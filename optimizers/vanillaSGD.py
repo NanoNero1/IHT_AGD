@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from IHT_AGD.optimizer.baseOptimizer import myOptimizer
+from IHT_AGD.optimizers.baseOptimizer import myOptimizer
 
 
 ###############################################################################################################################################################
