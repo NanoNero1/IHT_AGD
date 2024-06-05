@@ -103,7 +103,7 @@ class ihtSGD(vanillaSGD):
     if sparsity == None:
       sparsity = self.sparsity
 
-    concatWeights = torch.zeros((1)).to(device)
+    concatWeights = torch.zeros((1)).to(self.device)
     for p in self.paramsIter():
       if iterate == None:
         layer = p.data
@@ -140,9 +140,9 @@ class ihtSGD(vanillaSGD):
       state['xt_frozen'] = (torch.abs(layer) > 0).type(torch.uint8)
 
   def trackingSparsity(self):
-    concatWeights = torch.zeros((1)).to(device)
-    concatLinear = torch.zeros((1)).to(device)
-    concatBias = torch.zeros((1)).to(device)
+    concatWeights = torch.zeros((1)).to(self.device)
+    concatLinear = torch.zeros((1)).to(self.device)
+    concatBias = torch.zeros((1)).to(self.device)
     for layer in self.paramsIter():
       inb = torch.abs(layer.data)
 
