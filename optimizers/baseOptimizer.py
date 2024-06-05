@@ -1,3 +1,7 @@
+#SOURCE: https://www.geeksforgeeks.org/custom-optimizers-in-pytorch/
+
+#SOURCE: https://github.com/azotlichid/adaptive-opt
+
 import torch
 from torch.optim.optimizer import Optimizer, required
 import abc
