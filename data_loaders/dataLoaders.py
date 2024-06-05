@@ -23,6 +23,7 @@ match datasetChoice:
 
     # setup information?
   case "CIFAR":
+    # NOTE Right now CIFAR should work - I forgot why unfortunately
     abort()
     ############################ OOOOOOOOOOOOOOOOH!!!!! ACTUALLY I NEED TO NORMALIZE IT< THE TRANSFORM IS WRONG!!!!
     dataset1 = datasets.CIFAR10('../data', train=True, download=True,transform=transform)
