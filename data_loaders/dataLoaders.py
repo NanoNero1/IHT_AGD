@@ -1,6 +1,8 @@
 # SOURCE: https://colab.research.google.com/github/skorch-dev/skorch/blob/master/notebooks/MNIST.ipynb#scrollTo=mwpfASvc_v7J
 # SOURCE: https://github.com/pytorch/examples/blob/main/mnist/main.py
 
+from torchvision import datasets, transforms
+
 
 """ Desc: The MNIST Dataset, sourced from PyTorch, this dataset is for classification of handwritten digits
   Size: 60,000 examples,
