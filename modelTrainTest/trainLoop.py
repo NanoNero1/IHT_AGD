@@ -11,7 +11,7 @@ from neptune import Run
   Output: training loss, testing loss, [! we do not capture testing accuracy here]
 """
 
-def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,test_loader=None):
+def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,test_loader=None,run=None):
 
     model.train()
 
