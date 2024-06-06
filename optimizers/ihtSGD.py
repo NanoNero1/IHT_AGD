@@ -156,10 +156,11 @@ class ihtSGD(vanillaSGD):
 
       # Sparsity for this layer
       layerSparsity = torch.mean(torch.abs(concatWeights) > 0).type(torch.float)
+      layerName = f"layerSize{torch.numel(layer)}"
 
       # Track the per-layer sparsity with size
       #setattr(self,f"layerSize{torch.numel(layer)}")
-      self.run[f"trials/{self.trialNumber}/{self.methodName}/{f"layerSize{torch.numel(layer)}"}"].append(layerSparsity)
+      self.run[f"trials/{self.trialNumber}/{self.methodName}/{layerName}"].append(layerSparsity)
 
 
     # Final sparsity calculations
