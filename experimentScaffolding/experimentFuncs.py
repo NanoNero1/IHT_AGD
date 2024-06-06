@@ -3,20 +3,20 @@ from IHT_AGD.architectures.convNets import MNIST_convNet
 
 """ Desc these functions actually run the experiments and capture the model references"""
 
-def runOneExperiment(setup=None,trialNumber=None,datasetChoice=None,**kwargs):
+def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs):
 
   match datasetChoice:
     case "MNIST":
-      model = MNIST_convNet().to(device)
+      model = MNIST_convNet().to(kawrgs['device'])
     case "CIFAR":
       abort()
-      model = CIFAR_convNet().to(device)
+      model = CIFAR_convNet().to(kwargs['device'])
 
   optimizer = chooseOptimizer(setup,model,trialNumber)
   #optimizer = eval(setup["scheme"])(setup,model,trialNumber)
 
   # Maybe the idea is that the model can change, but the test loader is global??
-  optimizer.test_loader = test_loader
+  optimizer.test_loader = kwargs['test_loader']
 
   ########################################
   ######################################## TO-DO: make sure the optimizer has kwargs parsed! 
