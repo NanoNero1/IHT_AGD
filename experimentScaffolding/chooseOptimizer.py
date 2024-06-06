@@ -41,12 +41,16 @@ def fixedChooseOptimizer(setup,model,**kwargs):
   # Filtering the kwargs here, just so that we know what data we give the optimizers
   # CAREFUL!: is 'del' a safe function?
   keyWordArgsKeys = keyWordArgs.keys()
+  badKeys = []
+  allowedVars = ['lr','sparsity','alpha','beta','kappa','device','scheme','functionsToHelpTrack','variablesToTrack','run','train_loader',
+                   'test_loader','trialNumber']
   for key in keyWordArgsKeys:
     # The values we allow the optimizer to pick up
-    allowedVars = ['lr','sparsity','alpha','beta','kappa','device','scheme','functionsToHelpTrack','variablesToTrack','run','train_loader',
-                   'test_loader','trialNumber']
     if key not in allowedVars:
-        del keyWordArgs[key]
+        badKeys.append(key)
+
+  for badKey in badKeys:
+    del keyWordArgs[badKey]
 
   # Not the most safe idea, is there another way?
   eval(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
