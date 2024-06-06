@@ -16,7 +16,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
       model = CIFAR_convNet().to(kwargs['device'])
 
   #optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
-  optimizer = fixedChooseOptimizer(setup,model,**kwargs)
+  optimizer = fixedChooseOptimizer(setup,model,**(kwargs | trialNumber))
   
   ########################################
   ######################################## TO-DO: make sure the optimizer has kwargs parsed! 
