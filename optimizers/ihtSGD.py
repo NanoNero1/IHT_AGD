@@ -154,6 +154,14 @@ class ihtSGD(vanillaSGD):
         concatLinear = torch.cat((concatLinear,flatLinear),0)
 
 
+      # Sparsity for this layer
+      layerSparsity = torch.mean(torch.abs(concatWeights) > 0).type(torch.float)
+
+      # Track the per-layer sparsity with size
+      #setattr(self,f"layerSize{torch.numel(layer)}")
+      self.run[f"trials/{self.trialNumber}/{self.methodName}/{f"layerSize{torch.numel(layer)}"}"].append(layerSparsity)
+
+
     # Final sparsity calculations
     nonZeroWeights = (torch.abs(concatWeights) > 0).type(torch.float)
     nonZeroBias = (torch.abs(concatBias) > 0).type(torch.float)
