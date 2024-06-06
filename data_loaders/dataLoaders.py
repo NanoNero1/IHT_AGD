@@ -23,7 +23,9 @@ match datasetChoice:
 
     # setup information?
   case "CIFAR":
-    # NOTE Right now CIFAR should work - I forgot why unfortunately
+    # NOTE Right now CIFAR shouldn't work - I forgot why unfortunately
+    # note to self: I just remembered! we are applying the MNIST transformation to CIFAR,
+    # obviously this is a bad idea. CHECK: is CIFAR already normalized, if it isn't, normalize it
     abort()
     ############################ OOOOOOOOOOOOOOOOH!!!!! ACTUALLY I NEED TO NORMALIZE IT< THE TRANSFORM IS WRONG!!!!
     dataset1 = datasets.CIFAR10('../data', train=True, download=True,transform=transform)
