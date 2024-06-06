@@ -12,7 +12,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
       abort()
       model = CIFAR_convNet().to(kwargs['device'])
 
-  optimizer = chooseOptimizer(setup,model,trialNumber)
+  optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
   #optimizer = eval(setup["scheme"])(setup,model,trialNumber)
 
   # Maybe the idea is that the model can change, but the test loader is global??
