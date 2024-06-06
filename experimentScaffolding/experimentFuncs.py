@@ -7,7 +7,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
 
   match datasetChoice:
     case "MNIST":
-      model = MNIST_convNet().to(kawrgs['device'])
+      model = MNIST_convNet().to(kwargs['device'])
     case "CIFAR":
       abort()
       model = CIFAR_convNet().to(kwargs['device'])
