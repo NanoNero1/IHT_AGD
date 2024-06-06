@@ -64,3 +64,4 @@ def fixedChooseOptimizer(setup,model,**kwargs):
   optimizerClass = str_to_class(setup['scheme'])
   
   optimizerClass(model.parameters(),model=model,**keyWordArgs)
+  return optimizerClass
