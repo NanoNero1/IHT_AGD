@@ -157,6 +157,7 @@ class ihtSGD(vanillaSGD):
       # Sparsity for this layer
       layerSparsity = torch.mean( (torch.abs(layer.data) > 0).type(torch.float) )
       layerName = f"layerSize{torch.numel(layer)}"
+      print(torch.numel(layer))
       print(layer.shape)
       abort()
 
