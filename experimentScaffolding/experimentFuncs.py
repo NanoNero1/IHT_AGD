@@ -38,7 +38,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     #print(optimizer.methodName)
 
     # Call to run one epoch of training
-    train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=run)
+    train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=kwargs['run'])
 
     scheduler.step()
   return model
