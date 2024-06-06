@@ -1,4 +1,5 @@
 from IHT_AGD.experimentScaffolding.chooseOptimizer import chooseOptimizer
+from IHT_AGD.experimentScaffolding.chooseOptimizer import fixedChooseOptimizer
 from IHT_AGD.architectures.convNets import MNIST_convNet
 import torch
 from IHT_AGD.modelTrainTest.trainLoop import train
@@ -14,23 +15,12 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
       abort()
       model = CIFAR_convNet().to(kwargs['device'])
 
-  optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
-  #optimizer = eval(setup["scheme"])(setup,model,trialNumber)
-  print("haha")
+  #optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
+  optimizer = fixedChooseOptimizer(setup,model,**kwargs)
   
-
-  # Maybe the idea is that the model can change, but the test loader is global??
-  optimizer.test_loader = kwargs['test_loader']
-
   ########################################
   ######################################## TO-DO: make sure the optimizer has kwargs parsed! 
   ######################################## so like test loader is also given to it
-  #for () in kwargs
-  # REFURBISH ME!!!!!!!!
-  for key, value in kwargs.items():
-    if key not in ['device','functionsToHelpTrack','variablesToTrack','run']:
-      continue
-    setattr(optimizer, key, value)
   optimizer.loggingInterval = 1
 
   # This implementation uses a Learning Rate Scheduler
