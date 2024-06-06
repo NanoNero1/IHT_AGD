@@ -45,3 +45,18 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     scheduler.step()
   return model
 
+def runMainExperiment(setups,epochs=5,trialNumber=0,**kwargs):
+
+  print(kwargs)
+  defaults = {"epochs":epochs}
+
+  # Combines the default setup with some added parameters
+  setups = [defaults | setup for setup in setups]
+
+  print(setups) # It's nice to see what parameters are actually passed
+  all_models = [[] for i in range((len(setups)))]
+  for idx in range(len(setups)):
+    print(trialNumber)
+    all_models[idx] = runOneExperiment(setups[idx],trialNumber=trialNumber,**kwargs)
+  return all_models
+
