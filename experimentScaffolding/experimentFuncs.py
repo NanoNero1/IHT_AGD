@@ -1,3 +1,5 @@
+from IHT_AGD.experimentScaffolding.chooseOptimizer import chooseOptimizer
+
 """ Desc these functions actually run the experiments and capture the model references"""
 
 def runOneExperiment(setup=None,trialNumber=None,datasetChoice=None,**kwargs):
@@ -37,3 +39,4 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice=None,**kwargs):
 
     scheduler.step()
   return model
+
