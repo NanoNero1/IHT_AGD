@@ -8,13 +8,11 @@ import torch.nn.functional as F
 ###############################################################################################################################################################
 
 class vanillaAGD(vanillaSGD):
-  def __init__(self,params,kappa=5.0,beta=50.0,**kwargs):
+  def __init__(self,params,**kwargs):
     super().__init__(params,**kwargs)
 
     # Objective Function Property Variables
 
-    self.beta = beta
-    self.kappa = kappa
     self.alpha = self.beta / self.kappa
     self.sqKappa = pow(self.kappa,0.5)
 

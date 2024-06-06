@@ -5,11 +5,9 @@ from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
 # ---------------------------------------------------- IHT-SGD ------------------------------------------------------------------------------------------
 ###############################################################################################################################################################
 class ihtSGD(vanillaSGD):
-  def __init__(self, params, beta=1.0,getNewGrad=None,sparsity=0.9,sparsifyInterval=10,**kwargs):
+  def __init__(self, params, sparsifyInterval=10,**kwargs):
 
     super().__init__(params,**kwargs)
-    self.beta = beta
-    self.sparsity = sparsity
     self.sparsifyInterval = sparsifyInterval
 
     # Compression, Decompression and Freezing Variables

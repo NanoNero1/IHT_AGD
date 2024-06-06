@@ -8,7 +8,7 @@ from IHT_AGD.optimizers.baseOptimizer import myOptimizer
 ###############################################################################################################################################################
 
 class vanillaSGD(myOptimizer):
-  def __init__(self,params,beta=1.0,**kwargs):
+  def __init__(self,params,**kwargs):
     print(kwargs)
     super().__init__(params,**kwargs)
 
@@ -19,7 +19,6 @@ class vanillaSGD(myOptimizer):
         state['step'] = 0
 
     # Internal Variables
-    self.beta = beta
     self.methodName = "vanilla_SGD"
 
   # NOTE: y = p + 0.0

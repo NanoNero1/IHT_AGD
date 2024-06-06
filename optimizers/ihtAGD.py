@@ -7,17 +7,14 @@ from IHT_AGD.optimizers.ihtSGD import ihtSGD
 ###############################################################################################################################################################
 
 class ihtAGD(vanillaAGD,ihtSGD):
-  def __init__(self,params,sparsity=0.9,kappa=5.0,beta=50.0,**kwargs):
+  def __init__(self,params,**kwargs):
     super().__init__(params,**kwargs)
     self.methodName = "iht_AGD"
-    self.alpha = beta / kappa
-    self.beta = beta
-    self.kappa = kappa
-    #self.model = model
+    self.alpha = self.beta / self.kappa
 
     # BUG: Because of multiple inheritance I need to add this statement below,
     # but I know how to fix this
-    self.sparsity=sparsity
+    #self.sparsity=sparsity
 
   def step(self):
     print(f"speed iteration {self.iteration}")
