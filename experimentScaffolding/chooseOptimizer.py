@@ -63,7 +63,4 @@ def fixedChooseOptimizer(setup,model,**kwargs):
   # This seems to be safer at least
   optimizerClass = str_to_class(setup['scheme'])
   
-  print(optimizerClass)
-  abort()
-  
-  #compile(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
+  optimizerClass(model.parameters(),model=model,**keyWordArgs)
