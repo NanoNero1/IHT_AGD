@@ -1,4 +1,5 @@
 from IHT_AGD.experimentScaffolding.chooseOptimizer import chooseOptimizer
+from IHT_AGD.architectures.convNets import MNIST_convNet
 
 """ Desc these functions actually run the experiments and capture the model references"""
 
