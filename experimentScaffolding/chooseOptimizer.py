@@ -7,10 +7,8 @@ import sys
 def str_to_class(classname):
     return getattr(sys.modules[__name__], classname)
 
-
-
-# NOTE: we want to remove this and replace it with a better system,
-# nonetheless, this is still useful for now due to a small issue in my setup code
+# NOTE: This function has been DEPRECATED
+# nonetheless it might still be useful for debugging purposes in the future
 def chooseOptimizer(setup,model,trialNumber,device=None):
   match setup["scheme"]:
     case "vanillaSGD":
@@ -36,6 +34,7 @@ def chooseOptimizer(setup,model,trialNumber,device=None):
   optimizer.trialNumber = trialNumber
   return optimizer
 
+# NOTE: this is the function currently in use
 def fixedChooseOptimizer(setup,model,**kwargs):
   print("test fixed chooose")
 

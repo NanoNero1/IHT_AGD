@@ -18,9 +18,6 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
   #optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
   optimizer = fixedChooseOptimizer(setup,model,**(kwargs | {'trialNumber':trialNumber}))
   
-  ########################################
-  ######################################## TO-DO: make sure the optimizer has kwargs parsed! 
-  ######################################## so like test loader is also given to it
   optimizer.loggingInterval = 1
 
   # This implementation uses a Learning Rate Scheduler

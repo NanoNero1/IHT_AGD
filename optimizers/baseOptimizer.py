@@ -73,8 +73,7 @@ class myOptimizer(Optimizer):
 
   """ Desc: use it like 'for i in paramsIterator():' """
 
-  # CHECK: that this efficient, does this just pass references or copy the entire thing?
-  # THIS WORKS!
+  # CHECK: that using 'yield' is efficient, does this just pass references or copy the entire tensor?
   def paramsIter(self):
     for group in self.param_groups:
       for p in group['params']:

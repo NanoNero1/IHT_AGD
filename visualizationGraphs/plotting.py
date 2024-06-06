@@ -14,14 +14,12 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
   
   
   # TO-DO: a function for this long line of code? just want the values
-  # this is is the default amount of iterations -- this is also a bad idea!
+  # TO-DO: this is based on the default amount of iterations, depending on the logging it might make a confusing graph
   if metricName != "loss":
     iterations = seeRun[f"trials/0/{methodNames[0]}/iteration"].fetch_values()["value"]
   else:
     iterations = [i for i in range(len( seeRun[f"trials/0/{methodNames[0]}/loss"].fetch_values()["value"] )) ]
 
-
-  #iterations = iterations[50:]
   for method in methodNames:
     methodValues = []
     for trial in range(trials):
@@ -29,10 +27,7 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
       methodValues.append(np.array(trialValues))
 
     #Finding the mean and standard error (see if along one dimension)
-    #print(methodValues)
     methodMean = np.mean(methodValues,axis=0)
-    #print(methodMean,)
-    #abort()
     methodSTD = np.sqrt(np.std(methodValues)) / 10
 
 

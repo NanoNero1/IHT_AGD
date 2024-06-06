@@ -12,7 +12,6 @@ class vanillaAGD(vanillaSGD):
     super().__init__(params,**kwargs)
 
     # Objective Function Property Variables
-
     self.alpha = self.beta / self.kappa
     self.sqKappa = pow(self.kappa,0.5)
 
@@ -28,7 +27,7 @@ class vanillaAGD(vanillaSGD):
     self.methodName = "vanilla_AGD"
 
   # NOTE: we want to turn this off?
-  #@torch.no_grad???????
+  #@torch.no_grad - not sure if the activate it here since we calculate the gradient as nested in this function
   def step(self):
     print("This is the fixed Accelerated Gradient Descent")
     print(f"speed iteration {self.iteration}")
@@ -58,7 +57,7 @@ class vanillaAGD(vanillaSGD):
         # NOTE: p.grad is now the gradient at zt
         p.data = state['xt'] - (1.0 / pow(self.alpha*self.beta , 0.5)) * p.grad
 
-        # also update xt!
+        # we also update xt
         state['xt'] = p.data.detach().clone()
 
   def getNewGrad(self,iterate):
@@ -76,11 +75,9 @@ class vanillaAGD(vanillaSGD):
     newOutput = self.model(data)
     loss = F.nll_loss(newOutput, target)
     loss.backward()
-    # CHECK: see if this works as intended
 
+    # CHECK: see if this works as intended
     #for p in self.paramsIter():
-      #pass
       #print(p)
       #print('and now the gradient')
       #print(p.grad)
-      #abort()

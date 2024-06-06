@@ -4,9 +4,6 @@ import torch
 import torch.nn.functional as F
 from neptune import Run
 
-### note to self: I think I also need to import it here natively, no?
-#import trainingMetrics
-
 """ Desc: function for one training epoch. At each step, we query the optimizer and log the training loss to Neptune.
   Output: training loss, testing loss, [! we do not capture testing accuracy here]
 """

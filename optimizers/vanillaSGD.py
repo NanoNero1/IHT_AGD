@@ -25,7 +25,6 @@ class vanillaSGD(myOptimizer):
   # print(p.requires_grad) #<- True
   # print(y.requires_grad) #<- False
   @torch.no_grad()
-  # and also with torch.no_grad() actually works!
   def step(self):
     print(f"speed iteration {self.iteration}")
     self.logging()

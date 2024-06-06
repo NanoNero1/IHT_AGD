@@ -22,7 +22,6 @@ class ihtSGD(vanillaSGD):
         state = self.state[p]
         state['step'] = 0
 
-        # NOTE: I do I need xt?
         state['xt_frozen'] = torch.ones_like(p)
 
     self.methodName = "iht_SGD"
@@ -93,7 +92,7 @@ class ihtSGD(vanillaSGD):
   def refreeze(self,iterate=None):
     for p in self.paramsIter():
       state = self.state[p]
-      #Changme so modular string
+      # TO-DO: make into modular string
       #p.mul_(state['xt_frozen'])
       p.data *= state['xt_frozen']
 
@@ -109,7 +108,7 @@ class ihtSGD(vanillaSGD):
         state = self.state[p]
         layer = state[iterate]
 
-      # TO-DO::::: Make sure this flattening doesn't affect the original layer!
+      # CHECK: Make sure this flattening doesn't affect the original layer
       flatWeights = torch.flatten(layer)
       concatWeights = torch.cat((concatWeights,flatWeights),0)
 
@@ -124,8 +123,6 @@ class ihtSGD(vanillaSGD):
 
   def freeze(self,iterate=None):
     cutOff = self.getCutOff(iterate=iterate)
-
-    # TO-DO I should really write a wrapper for this! $$ DONE!
 
     for p in self.paramsIter():
       state = self.state[p]
