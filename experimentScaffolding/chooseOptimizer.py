@@ -52,5 +52,6 @@ def fixedChooseOptimizer(setup,model,**kwargs):
   for badKey in badKeys:
     del keyWordArgs[badKey]
 
-  # Not the most safe idea, is there another way?
-  eval(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
+  # WARNING: using eval/exec/compile - not the most safe idea, is there another way?
+  # I want to avoid passing classes in the setup, just strings/floats so it's json compatible
+  exec(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
