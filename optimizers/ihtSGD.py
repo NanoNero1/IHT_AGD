@@ -159,7 +159,8 @@ class ihtSGD(vanillaSGD):
       layerName = f"layerSize{torch.numel(layer)}"
       print(torch.numel(layer))
       print(layer.shape)
-      abort()
+      # NOTE TO SELF: remember, the layer with 10 values isn't strange, it's just the bias layer
+      #abort()
 
       # Track the per-layer sparsity with size
       #setattr(self,f"layerSize{torch.numel(layer)}")
