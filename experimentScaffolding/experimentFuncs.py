@@ -16,6 +16,8 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
 
   optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
   #optimizer = eval(setup["scheme"])(setup,model,trialNumber)
+  print("haha")
+  
 
   # Maybe the idea is that the model can change, but the test loader is global??
   optimizer.test_loader = kwargs['test_loader']
