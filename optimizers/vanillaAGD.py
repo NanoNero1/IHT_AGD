@@ -68,7 +68,7 @@ class vanillaAGD(vanillaSGD):
 
         # CHECK: is the order of operations correct?
         p.data = state[iterate].clone().detach()
-        print('THE NEEEEEEEEEEEEEEW FIX')
+        print('FIXED IHT-AGD')
 
     self.zero_grad()
     data,target = self.currentDataBatch
