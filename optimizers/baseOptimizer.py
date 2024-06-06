@@ -12,7 +12,7 @@ e.g. Iterative Hard Thresholding with Accelerated Gradient Descent is a combinat
 """
 
 class myOptimizer(Optimizer):
-  def __init__(self,params,test_loader=None,lr=1.0,sparse=False,demoValue=100,**kwargs):
+  def __init__(self,params,lr=1.0,sparse=False,demoValue=100,**kwargs):
 
     # A dummy value to see if inheritance works properly
     self.demoValue = demoValue

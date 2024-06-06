@@ -27,9 +27,9 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
         optimizer.zero_grad()
 
         # Important to check if the gradients are truly none
-        for group in optimizer.param_groups:
-          for p in group['params']:
-            print(p.grad)
+        #for group in optimizer.param_groups:
+        #  for p in group['params']:
+        #    print(p.grad)
 
         # Generating Predictions and Calculating Loss
         output = model(data)
