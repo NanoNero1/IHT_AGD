@@ -50,8 +50,8 @@ def fixedChooseOptimizer(setup,model,**kwargs):
         badKeys.append(key)
 
   for badKey in badKeys:
-    del keyWordArgs[badKey]
+    del keyWordArgs[badKey] 
 
   # WARNING: using eval/exec/compile - not the most safe idea, is there another way?
   # I want to avoid passing classes in the setup, just strings/floats so it's json compatible
-  exec(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
+  compile(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
