@@ -1,1 +1,1 @@
-"# IHT_AGD" 
+Welcome to the repository for Iterative Hard Thresholding (IHT) applied to Accelerated Gradient Descent (AGD). Download the main.ipynb file for trying out experiments. When run in a Jupyter Notebook, main.ipynb will automatically import the supporting code found here.
