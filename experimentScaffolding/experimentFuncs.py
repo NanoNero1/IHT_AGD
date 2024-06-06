@@ -1,5 +1,7 @@
 from IHT_AGD.experimentScaffolding.chooseOptimizer import chooseOptimizer
 from IHT_AGD.architectures.convNets import MNIST_convNet
+import torch
+from IHT_AGD.modelTraintTest.trainLoop import train
 
 """ Desc these functions actually run the experiments and capture the model references"""
 
@@ -36,7 +38,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     #print(optimizer.methodName)
 
     # Call to run one epoch of training
-    train([],model, device, train_loader, optimizer, epoch,trialNumber,run=run)
+    train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=run)
 
     scheduler.step()
   return model
