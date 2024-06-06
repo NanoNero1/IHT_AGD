@@ -14,7 +14,7 @@ class ihtSGD(vanillaSGD):
     self.phaseLength = 40
     self.compressionRatio = 0.5
     self.freezingRatio = 0.2
-    self.warmupLength = 50
+    self.warmupLength = 30
 
     # State Initialization
     for group in self.param_groups:
