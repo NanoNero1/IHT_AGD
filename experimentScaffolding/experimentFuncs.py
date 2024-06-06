@@ -60,3 +60,8 @@ def runMainExperiment(setups,epochs=5,trialNumber=0,**kwargs):
     all_models[idx] = runOneExperiment(setups[idx],trialNumber=trialNumber,**kwargs)
   return all_models
 
+def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
+
+  for trial in range(trials):
+    runMainExperiment(setups,epochs=epochs,trialNumber=trial,**kwargs)
+
