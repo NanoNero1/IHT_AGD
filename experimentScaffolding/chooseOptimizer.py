@@ -40,7 +40,8 @@ def fixedChooseOptimizer(setup,model,**kwargs):
 
   # Filtering the kwargs here, just so that we know what data we give the optimizers
   # CAREFUL!: is 'del' a safe function?
-  for key in keyWordArgs.keys():
+  keyWordArgsKeys = keyWordArgs.keys()
+  for key in keyWordArgsKeys:
     # The values we allow the optimizer to pick up
     allowedVars = ['lr','sparsity','alpha','beta','kappa','device','scheme','functionsToHelpTrack','variablesToTrack','run','train_loader',
                    'test_loader','trialNumber']
