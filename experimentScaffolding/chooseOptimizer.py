@@ -54,4 +54,8 @@ def fixedChooseOptimizer(setup,model,**kwargs):
 
   # WARNING: using eval/exec/compile - not the most safe idea, is there another way?
   # I want to avoid passing classes in the setup, just strings/floats so it's json compatible
-  compile(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
+  exec(f"optimizerClass = {setup['scheme']}")
+  print(optimizerClass)
+  abort()
+  
+  #compile(f"optimizer = {setup['scheme']}(model.parameters(),model=model,**keyWordArgs)")
