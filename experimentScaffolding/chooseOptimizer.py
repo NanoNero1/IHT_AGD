@@ -7,7 +7,7 @@ from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
 
 # NOTE: we want to remove this and replace it with a better system,
 # nonetheless, this is still useful for now due to a small issue in my setup code
-def chooseOptimizer(setup,model,trialNumber):
+def chooseOptimizer(setup,model,trialNumber,device=None):
   match setup["scheme"]:
     case "vanillaSGD":
          #optimizer = vanillaSGD(model.parameters(),lr=setup["lr"],model=model,beta=setup["beta"])
