@@ -34,7 +34,7 @@ class ihtSGD(vanillaSGD):
 
   @torch.no_grad()
   def step(self):
-    print('THIS IS FIXED IHT SGD')
+    print('FIXED IHT SGD')
     print(f"speed iteration {self.iteration}")
     self.logging()
     self.compressOrDecompress()

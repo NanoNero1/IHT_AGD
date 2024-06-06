@@ -31,7 +31,7 @@ class vanillaSGD(myOptimizer):
     self.logging()
     self.updateWeights()
     self.iteration +=1
-    print('fixed vanilla')
+    print('fixed vanilla SGD')
     return None
 
   # Regular Gradient Descent
