@@ -1,5 +1,7 @@
 Welcome to the repository for **Iterative Hard Thresholding (IHT)** applied to **Accelerated Gradient Descent (AGD)**. 
 
+![alt text](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/PyTorch_logo_black.svg/2560px-PyTorch_logo_black.svg.png)
+
 # Instructions
 
 ## The notebook
