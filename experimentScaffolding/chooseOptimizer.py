@@ -2,6 +2,10 @@ from IHT_AGD.optimizers.vanillaAGD import vanillaAGD
 from IHT_AGD.optimizers.ihtAGD import ihtAGD
 from IHT_AGD.optimizers.ihtSGD import ihtSGD
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
+import sys
+
+def str_to_class(classname):
+    return getattr(sys.modules[__name__], classname)
 
 
 
@@ -54,7 +58,11 @@ def fixedChooseOptimizer(setup,model,**kwargs):
 
   # WARNING: using eval/exec/compile - not the most safe idea, is there another way?
   # I want to avoid passing classes in the setup, just strings/floats so it's json compatible
-  exec(f"optimizerClass = {setup['scheme']}")
+  #exec(f"optimizerClass = {setup['scheme']}")
+  
+  # This seems to be safer at least
+  optimizerClass = str_to_class(setup['scheme'])
+  
   print(optimizerClass)
   abort()
   
