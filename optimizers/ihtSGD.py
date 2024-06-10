@@ -162,10 +162,13 @@ class ihtSGD(vanillaSGD):
       # NOTE TO SELF: remember, the layer with 10 values isn't strange, it's just the bias layer
       #abort()
 
+
       # Track the per-layer sparsity with size
       #setattr(self,f"layerSize{torch.numel(layer)}")
       self.run[f"trials/{self.trialNumber}/{self.methodName}/{layerName}"].append(layerSparsity)
 
+    # NOTE TO SELF!!!!!!!!!!!!!!!!!!!
+    # the 0.99999999 is really just the extra 0 we added on from before, that's why it shows up in the graph
 
     # Final sparsity calculations
     nonZeroWeights = (torch.abs(concatWeights) > 0).type(torch.float)

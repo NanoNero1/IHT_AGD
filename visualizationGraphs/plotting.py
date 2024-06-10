@@ -2,8 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 from neptune import Run
 
-plt.figure(figsize=(30,14))
-
 
 def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
   
