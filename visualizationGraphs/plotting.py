@@ -47,7 +47,7 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
 
 
   #Save the figure
-  plt.savefig('test_title.png')
+  plt.savefig('New_test_title.png')
 
   # Show the plot
   plt.show()
