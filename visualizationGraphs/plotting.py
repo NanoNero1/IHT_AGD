@@ -4,6 +4,8 @@ from neptune import Run
 
 
 def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
+
+  print('did this update?')
   
   #Careful with the project variable
   project="dimitri-kachler-workspace/sanity-MNIST"
