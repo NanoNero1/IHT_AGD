@@ -5,7 +5,7 @@ from neptune import Run
 
 def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
 
-  #abort()
+  abort()
   print('did this update?')
   
   #Careful with the project variable
