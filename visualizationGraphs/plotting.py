@@ -5,8 +5,9 @@ from neptune import Run
 
 def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
 
-  abort()
+  #abort()
   print('did this update?')
+  plt.figure(figsize=(40,10))
   
   #Careful with the project variable
   project="dimitri-kachler-workspace/sanity-MNIST"
