@@ -48,7 +48,7 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
   print("now it should not be blank")
 
   #Save the figure
-  plt.savefig('New_test_title.png')
+  plt.savefig('bestNew_test_title.png')
 
   # Show the plot
   plt.show()
