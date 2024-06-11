@@ -33,6 +33,7 @@ class myOptimizer(Optimizer):
     self.dealWithKwargs(kwargs)
 
     self.methodName="base_optimizer"
+    self.setupID = None
 
   """ Desc: logs various useful parameters -- is expensive to run on every iteration"""
   def logging(self):
@@ -49,7 +50,7 @@ class myOptimizer(Optimizer):
         if variable not in self.variablesToTrack:
           continue
         else:
-          self.run[f"trials/{self.trialNumber}/{self.methodName}/{variable}"].append(eval("self."+variable))
+          self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
 
   """ Desc: an internal function that calculates the test loss on the logging step #NOTE: expensive to compute, try to make the logging interval high"""
   def getTestAccuracy(self):

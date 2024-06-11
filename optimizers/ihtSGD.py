@@ -165,7 +165,7 @@ class ihtSGD(vanillaSGD):
 
       # Track the per-layer sparsity with size
       #setattr(self,f"layerSize{torch.numel(layer)}")
-      self.run[f"trials/{self.trialNumber}/{self.methodName}/{layerName}"].append(layerSparsity)
+      self.run[f"trials/{self.trialNumber}/{self.setupID}/{layerName}"].append(layerSparsity)
 
     # NOTE TO SELF!!!!!!!!!!!!!!!!!!!
     # the 0.99999999 is really just the extra 0 we added on from before, that's why it shows up in the graph

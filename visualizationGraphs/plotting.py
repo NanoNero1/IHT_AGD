@@ -3,7 +3,7 @@ import numpy as np
 from neptune import Run
 
 
-def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
+def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1):
 
   #abort()
   print('did this update?')
@@ -18,11 +18,11 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
   # TO-DO: a function for this long line of code? just want the values
   # TO-DO: this is based on the default amount of iterations, depending on the logging it might make a confusing graph
   if metricName != "loss":
-    iterations = seeRun[f"trials/0/{methodNames[0]}/iteration"].fetch_values()["value"]
+    iterations = seeRun[f"trials/0/{setupIDs[0]}/iteration"].fetch_values()["value"]
   else:
-    iterations = [i for i in range(len( seeRun[f"trials/0/{methodNames[0]}/loss"].fetch_values()["value"] )) ]
+    iterations = [i for i in range(len( seeRun[f"trials/0/{setupIDs[0]}/loss"].fetch_values()["value"] )) ]
 
-  for method in methodNames:
+  for method in setupIDs:
     methodValues = []
     for trial in range(trials):
       trialValues = seeRun[f"trials/{trial}/{method}/{metricName}"].fetch_values()["value"][:len(iterations)]
