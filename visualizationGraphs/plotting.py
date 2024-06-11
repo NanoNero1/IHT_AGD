@@ -33,7 +33,7 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
     methodSTD = np.sqrt(np.std(methodValues)) / 10
 
 
-    plt.plot(iterations[50:], methodMean[50:],label=method)
+    plt.plot(iterations, methodMean,label=method)
     #plt.errorbar(iterations, methodMean, yerr = methodSTD)
 
 
