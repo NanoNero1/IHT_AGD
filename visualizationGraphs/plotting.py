@@ -42,9 +42,10 @@ def plotMetric(runID=None,metricName=None,methodNames=None,trials=1):
   plt.xlabel("Iterations")
   plt.ylabel(metricName)
   plt.legend(loc="upper right")
-  plt.show()
+  #plt.show()
 
 
+  print("now it should not be blank")
 
   #Save the figure
   plt.savefig('New_test_title.png')
