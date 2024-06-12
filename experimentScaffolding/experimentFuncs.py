@@ -52,7 +52,7 @@ def runMainExperiment(setups,epochs=5,trialNumber=0,**kwargs):
 def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
 
   
-  
+  print('jasper')
   abort()
   #Logging Metadata to Neptune
   run = kwargs['run']
