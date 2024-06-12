@@ -53,9 +53,9 @@ def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
 
 
   
-  print('jasper')
-  print('not 50 minutes ago')
-  abort()
+  #print('jasper')
+  #print('not 50 minutes ago')
+  #abort()
   #Logging Metadata to Neptune
   run = kwargs['run']
 
