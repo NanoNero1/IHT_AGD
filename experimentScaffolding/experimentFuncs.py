@@ -53,9 +53,12 @@ def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
   #abort()
   #Logging Metadata to Neptune
   run = kwargs['run']
+
+  # NOTE: why doesn't this print??
+  print('this should print')
   # CHECK: can I send dictionaries directly?
   run["activation"] = "ReLU"
-  run["metadata/setupJson"] = setups
+  run["setupDict"] = setups
 
   for trial in range(trials):
     runMainExperiment(setups,epochs=epochs,trialNumber=trial,**kwargs)
