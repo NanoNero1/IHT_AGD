@@ -4,6 +4,8 @@ from IHT_AGD.architectures.convNets import MNIST_convNet
 import torch
 from IHT_AGD.modelTrainTest.trainLoop import train
 
+import json 
+
 """ Desc these functions actually run the experiments and capture the model references"""
 
 def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs):
@@ -58,7 +60,14 @@ def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
   print('this should print')
   # CHECK: can I send dictionaries directly?
   run["activation"] = "ReLU"
-  run["setupDict"] = setups
+
+  # Converting to JSON
+  with open("setups.json", "w") as outfile: 
+    json.dump(setups, outfile)
+  
+  # NOTE: Neptune does not allow to send dictionaries directly,
+  # CHECK: that it doesn't get sent / look into the wrong directory
+  run["setupDict"].upload("setups.json")
 
   for trial in range(trials):
     runMainExperiment(setups,epochs=epochs,trialNumber=trial,**kwargs)
