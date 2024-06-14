@@ -27,6 +27,8 @@ match datasetChoice:
       pass
     else:
       raise("Raise Error - data not found")
+    
+    abort()
 
 
     dataset1 = datasets.MNIST('../data', train=True, download=False,transform=transform)
