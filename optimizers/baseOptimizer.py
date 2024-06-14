@@ -43,12 +43,22 @@ class myOptimizer(Optimizer):
       for function in dir(self):
         if function not in self.functionsToHelpTrack:
           continue
+        elif function in self.expensiveFunctions:
+          # TO-DO: we only care about expensive functions actually, 
+          # it's probably fine to log expensive variables on each step
+          # Do not compute expensive functions on every step
+          if self.iteration % 50 != 0:
+            continue
         eval("self." + function + "()")
 
       # Variables to Log
       for variable in dir(self):
         if variable not in self.variablesToTrack:
           continue
+        elif variable in self.expensiveVariables:
+          # Do not compute expensive variables on every step
+          if self.iteration % 50 != 0:
+            continue
         else:
           self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
 

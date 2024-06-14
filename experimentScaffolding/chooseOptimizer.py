@@ -46,7 +46,7 @@ def fixedChooseOptimizer(setup,model,**kwargs):
   keyWordArgsKeys = keyWordArgs.keys()
   badKeys = []
   allowedVars = ['lr','sparsity','alpha','beta','kappa','device','scheme','functionsToHelpTrack','variablesToTrack','run','train_loader',
-                   'test_loader','trialNumber']
+                   'test_loader','trialNumber','expensiveVariables','expensiveFunctions']
   for key in keyWordArgsKeys:
     # The values we allow the optimizer to pick up
     if key not in allowedVars:
