@@ -4,6 +4,8 @@
 from torchvision import datasets, transforms
 import torch
 
+from pathlib import Path
+
 
 """ Desc: The MNIST Dataset, sourced from PyTorch, this dataset is for classification of handwritten digits
   Size: 60,000 examples,
@@ -18,8 +20,17 @@ match datasetChoice:
     # Data Collection and Normalizing so that it's suitable for input to the neural network
     transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.1307,), (0.3081,))])
 
-    dataset1 = datasets.MNIST('../data', train=True, download=True,transform=transform)
-    dataset2 = datasets.MNIST('../data', train=False,transform=transform)
+    # Checking if data is already downloaded
+    p = Path('../data/MNIST/raw/train-images-idx3-ubyte')
+    print("THIS IS TO CHECK THAT THE DATA IS NOT BEING DOWNLOADED EVERY TIME!")
+    if p.exists():
+      pass
+    else:
+      raise("Raise Error - data not found")
+
+
+    dataset1 = datasets.MNIST('../data', train=True, download=False,transform=transform)
+    dataset2 = datasets.MNIST('../data', train=False,download=False,transform=transform)
 
     # setup information?
   case "CIFAR":
