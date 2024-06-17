@@ -111,6 +111,9 @@ class ihtSGD(vanillaSGD):
       # CHECK: Make sure this flattening doesn't affect the original layer
       flatWeights = torch.flatten(layer)
       concatWeights = torch.cat((concatWeights,flatWeights),0)
+    
+    # Removing the first zero
+    concatWeights = concatWeights[1:]
 
     # Converting the sparsity factor into an integer of respective size
     topK = int(len(concatWeights)*(1-sparsity))
@@ -169,6 +172,12 @@ class ihtSGD(vanillaSGD):
 
     # NOTE TO SELF!!!!!!!!!!!!!!!!!!!
     # the 0.99999999 is really just the extra 0 we added on from before, that's why it shows up in the graph
+
+    # Removing the First Zero
+    nonZeroBias = nonZeroBias[1:]
+    nonZeroWeights = nonZeroWeights[1:]
+    nonZeroLinear = nonZeroLinear[1:] 
+
 
     # Final sparsity calculations
     nonZeroWeights = (torch.abs(concatWeights) > 0).type(torch.float)
