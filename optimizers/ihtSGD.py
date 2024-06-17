@@ -174,6 +174,7 @@ class ihtSGD(vanillaSGD):
     # the 0.99999999 is really just the extra 0 we added on from before, that's why it shows up in the graph
 
     # Removing the First Zero
+    print('removed the first zero')
     nonZeroBias = nonZeroBias[1:]
     nonZeroWeights = nonZeroWeights[1:]
     nonZeroLinear = nonZeroLinear[1:] 
