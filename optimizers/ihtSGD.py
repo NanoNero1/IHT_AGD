@@ -175,10 +175,9 @@ class ihtSGD(vanillaSGD):
 
     # Removing the First Zero
     print('removed the first zero')
-    nonZeroBias = nonZeroBias[1:]
-    nonZeroWeights = nonZeroWeights[1:]
-    nonZeroLinear = nonZeroLinear[1:] 
-
+    concatBias = concatBias[1:]
+    concatWeights = concatWeights[1:]
+    concatLinear = concatLinear[1:] 
 
     # Final sparsity calculations
     nonZeroWeights = (torch.abs(concatWeights) > 0).type(torch.float)
