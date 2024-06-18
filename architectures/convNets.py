@@ -49,7 +49,8 @@ class MNIST_convNet(nn.Module):
         """
         self.conv1 = nn.Conv2d(1, 32, 3, 1)
         self.conv2 = nn.Conv2d(32, 64, 3, 1)
-        self.fc1 = nn.Linear(9216, 128)
+        self.fc1 = nn.Linear(9216, 564)
+        self.fc15 = nn.Linear(564,128)
         self.fc2 = nn.Linear(128, 10)
 
     # Forward Pass: outputs a vector [x] of softmax probabilities
@@ -73,6 +74,8 @@ class MNIST_convNet(nn.Module):
         x = F.max_pool2d(x, 2)
         x = torch.flatten(x, 1)
         x = self.fc1(x)
+        x = F.relu(x)
+        x = self.fc15(x)
         x = F.relu(x)
         x = self.fc2(x)
         output = F.log_softmax(x, dim=1)
