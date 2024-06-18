@@ -41,7 +41,6 @@ class ihtSGD(vanillaSGD):
 
   def sparsify(self,iterate=None):
     cutoff = self.getCutOff(iterate=iterate)
-    # TO-DO check if cutoff does what it says it does
 
     for p in self.paramsIter():
       #p.require_grad = False

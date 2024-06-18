@@ -50,7 +50,7 @@ class myOptimizer(Optimizer):
           # TO-DO: we only care about expensive functions actually, 
           # it's probably fine to log expensive variables on each step
           # Do not compute expensive functions on every step
-          if self.iteration % 50 != 0:
+          if self.iteration % 50 == 0:
             pass
         eval("self." + function + "()")
 
