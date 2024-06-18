@@ -52,6 +52,8 @@ class myOptimizer(Optimizer):
           # Do not compute expensive functions on every step
           if self.iteration % 50 == 0:
             pass
+          else:
+            continue
         eval("self." + function + "()")
 
       # Variables to Log
@@ -60,7 +62,7 @@ class myOptimizer(Optimizer):
           continue
         elif variable in self.expensiveVariables:
           # Do not compute expensive variables on every step
-          if self.iteration % 50 != 0:
+          if self.iteration % 50 == 0:
             pass
         
         self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
