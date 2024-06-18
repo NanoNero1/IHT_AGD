@@ -64,6 +64,9 @@ class myOptimizer(Optimizer):
           # Do not compute expensive variables on every step
           if self.iteration % 50 == 0:
             pass
+          else:
+            continue
+          # TO-DO: make it the same as function??
         
         self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
 
