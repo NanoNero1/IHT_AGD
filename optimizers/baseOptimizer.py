@@ -41,6 +41,9 @@ class myOptimizer(Optimizer):
     if self.iteration % self.loggingInterval == 0:
       # Functions to execute
       for function in dir(self):
+        # All of the possible functions to perform
+
+
         if function not in self.functionsToHelpTrack:
           continue
         elif function in self.expensiveFunctions:
@@ -48,7 +51,7 @@ class myOptimizer(Optimizer):
           # it's probably fine to log expensive variables on each step
           # Do not compute expensive functions on every step
           if self.iteration % 50 != 0:
-            continue
+            pass
         eval("self." + function + "()")
 
       # Variables to Log
@@ -58,9 +61,9 @@ class myOptimizer(Optimizer):
         elif variable in self.expensiveVariables:
           # Do not compute expensive variables on every step
           if self.iteration % 50 != 0:
-            continue
-        else:
-          self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
+            pass
+        
+        self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
 
   """ Desc: an internal function that calculates the test loss on the logging step #NOTE: expensive to compute, try to make the logging interval high"""
   def getTestAccuracy(self):
