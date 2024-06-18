@@ -1,28 +1,28 @@
 setup_ihtAGD_SP70 = {
-    "setupID":"ihtAGD_SP70",
-    "scheme":"ihtAGD" ,
+    "setupID":"ihtSGD_SP70",
+    "scheme":"ihtSGD" ,
     "sparsity":0.70,
     "kappa":5.0,
     "beta":50.0}
 
 
 setup_ihtAGD_SP90 = {
-    "setupID":"ihtAGD_SP90",
-    "scheme":"ihtAGD" ,
+    "setupID":"ihtSGD_SP90",
+    "scheme":"ihtSGD" ,
     "sparsity":0.90,
     "kappa":5.0,
     "beta":50.0}
 
 setup_ihtAGD_SP95 = {
-    "setupID":"ihtAGD_SP95",
-    "scheme":"ihtAGD" ,
+    "setupID":"ihtSGD_SP95",
+    "scheme":"ihtSGD" ,
     "sparsity":0.95,
     "kappa":5.0,
     "beta":50.0}
 
 setup_ihtAGD_SP99 = {
-    "setupID":"ihtAGD_SP99",
-    "scheme":"ihtAGD" ,
+    "setupID":"ihtSGD_SP99",
+    "scheme":"ihtSGD" ,
     "sparsity":0.99,
     "kappa":5.0,
     "beta":50.0}
