@@ -1,6 +1,7 @@
 from IHT_AGD.experimentScaffolding.chooseOptimizer import chooseOptimizer
 from IHT_AGD.experimentScaffolding.chooseOptimizer import fixedChooseOptimizer
 from IHT_AGD.architectures.convNets import MNIST_convNet
+from IHT_AGD.architectures.convNets import basicNeuralNet
 import torch
 from IHT_AGD.modelTrainTest.trainLoop import train
 
@@ -12,7 +13,8 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
 
   match datasetChoice:
     case "MNIST":
-      model = MNIST_convNet().to(kwargs['device'])
+      #model = MNIST_convNet().to(kwargs['device'])
+      model = basicNeuralNet().to(kwargs['device'])
     case "CIFAR":
       abort()
       model = CIFAR_convNet().to(kwargs['device'])

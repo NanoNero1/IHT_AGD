@@ -40,12 +40,21 @@ class basicNeuralNet(nn.Module):
 class MNIST_convNet(nn.Module):
     def __init__(self):
         super(MNIST_convNet, self).__init__()
+        """
         self.conv1 = nn.Conv2d(1, 32, 5, 1)
+
+        self.fc0 = nn.Linear(4608, 4608)
         self.fc1 = nn.Linear(4608, 128)
+        self.fc2 = nn.Linear(128, 10)
+        """
+        self.conv1 = nn.Conv2d(1, 32, 3, 1)
+        self.conv2 = nn.Conv2d(32, 64, 3, 1)
+        self.fc1 = nn.Linear(9216, 128)
         self.fc2 = nn.Linear(128, 10)
 
     # Forward Pass: outputs a vector [x] of softmax probabilities
     def forward(self, x):
+        """
         x = self.conv1(x)
         x = F.relu(x)
         x = F.max_pool2d(x, 2)
@@ -55,6 +64,17 @@ class MNIST_convNet(nn.Module):
         x = self.fc2(x)
 
         # Softmax so that we output probabilities (i.e. adds up to 1)
+        output = F.log_softmax(x, dim=1)
+        """
+        x = self.conv1(x)
+        x = F.relu(x)
+        x = self.conv2(x)
+        x = F.relu(x)
+        x = F.max_pool2d(x, 2)
+        x = torch.flatten(x, 1)
+        x = self.fc1(x)
+        x = F.relu(x)
+        x = self.fc2(x)
         output = F.log_softmax(x, dim=1)
         return output
 
