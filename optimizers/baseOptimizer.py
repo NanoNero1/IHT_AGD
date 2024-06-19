@@ -87,9 +87,11 @@ class myOptimizer(Optimizer):
   def easyPrintParams(self):
     # NOTE: the problem with this line is that it might create a NEW tensor (that won't have a gradient)
     #toPrint = 
-
-    print(f"Weights: {self.paramsIter()[100].data}")
-    print(f"Gradients: {self.paramsIter()[100].grad}")
+    for pInd,p in enumerate(self.paramsIter()):
+      if pInd != 100:
+        continue
+      print(f"Weights: {p.data}")
+      print(f"Gradients: {p.grad}")
     #test comment
 
 
