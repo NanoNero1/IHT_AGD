@@ -95,6 +95,7 @@ class myOptimizer(Optimizer):
       print(f"Gradients: {p.grad[:10]}")
       print(f"smallGradients {p[9].data}")
       print(f"smallGradients {p[9].grad}")
+      print(f"tryOutSwitch: {p[:10].grad} ")
 
     abort()
     #test comment
