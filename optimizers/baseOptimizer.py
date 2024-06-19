@@ -89,10 +89,11 @@ class myOptimizer(Optimizer):
     #toPrint = 
     for pInd,p in enumerate(self.paramsIter()):
       print(f"pInd: {pInd}")
-      if pInd != 10:
+      if pInd != 5:
         continue
       print(f"Weights: {p.data}")
       print(f"Gradients: {p.grad}")
+      print(f"smallGradients {p[1].grad}")
 
     abort()
     #test comment
