@@ -43,6 +43,6 @@ class vanillaSGD(myOptimizer):
     for p in self.paramsIter():
         #y = p + 0.0
         # NOTE TO FUTURE DIMITRI: you need to add an underscore else this is considered as an operation that returns something (I think)
-        print('GRADIENTS!!!!!!!!!!!!!')
-        print(p.grad)
+        #print('GRADIENTS!!!!!!!!!!!!!')
+        #print(p.grad)
         p.add_(  (-1.0 / self.beta) * p.grad / pow(5, np.floor(self.iteration / 360))  )
