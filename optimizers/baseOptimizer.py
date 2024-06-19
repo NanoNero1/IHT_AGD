@@ -84,7 +84,7 @@ class myOptimizer(Optimizer):
     accuracy = correct / len(self.test_loader.dataset)
     self.testAccuracy = accuracy
 
-  def easyPrintParam(self):
+  def easyPrintParams(self):
     toPrint = self.param_groups[0]['params'][0]
     print(f"Weights: {toPrint.data}")
     print(f"Gradients: {toPrint.grad}")

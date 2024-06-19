@@ -70,7 +70,9 @@ class ihtSGD(vanillaSGD):
   ### PHASES ###
   def warmup(self):
     print('warmup')
+    self.easyPrintParams()
     self.updateWeights()
+    self.easyPrintParams()
 
   def truncateAndFreeze(self):
     print('truncateAndFreeze')
