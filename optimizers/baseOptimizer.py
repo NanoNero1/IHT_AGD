@@ -88,6 +88,7 @@ class myOptimizer(Optimizer):
     toPrint = self.param_groups[0]['params'][0][0]
     print(f"Weights: {toPrint.data}")
     print(f"Gradients: {toPrint.grad}")
+    #test comment
 
 
   """ Desc: when we add extra kwargs that aren't recognized, we add them to our variables by default"""
