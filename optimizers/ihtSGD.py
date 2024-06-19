@@ -73,6 +73,7 @@ class ihtSGD(vanillaSGD):
     self.easyPrintParams()
     self.updateWeights()
     self.easyPrintParams()
+    abort()
 
   def truncateAndFreeze(self):
     print('truncateAndFreeze')
