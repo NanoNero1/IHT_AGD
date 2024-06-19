@@ -88,11 +88,13 @@ class myOptimizer(Optimizer):
     # NOTE: the problem with this line is that it might create a NEW tensor (that won't have a gradient)
     #toPrint = 
     for pInd,p in enumerate(self.paramsIter()):
-      abort()
+      print(f"pInd: {pInd}")
       if pInd != 10:
         continue
       print(f"Weights: {p.data}")
       print(f"Gradients: {p.grad}")
+
+    abort()
     #test comment
 
 
