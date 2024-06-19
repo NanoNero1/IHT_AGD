@@ -93,8 +93,8 @@ class myOptimizer(Optimizer):
         continue
       print(f"Weights: {p.data[:10]}")
       print(f"Gradients: {p.grad[:10]}")
-      print(f"smallGradients {p[10].data}")
-      print(f"smallGradients {p[10].grad}")
+      print(f"smallGradients {p[9].data}")
+      print(f"smallGradients {p[9].grad}")
 
     abort()
     #test comment
