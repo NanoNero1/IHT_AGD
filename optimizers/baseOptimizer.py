@@ -84,6 +84,11 @@ class myOptimizer(Optimizer):
     accuracy = correct / len(self.test_loader.dataset)
     self.testAccuracy = accuracy
 
+  def easyPrintParam(self):
+    toPrint = self.param_groups[0]['params'][0]
+    print(f"Weights: {toPrint.data}")
+    print(f"Gradients: {toPrint.grad}")
+
 
   """ Desc: when we add extra kwargs that aren't recognized, we add them to our variables by default"""
   def dealWithKwargs(self,keywordArgs):

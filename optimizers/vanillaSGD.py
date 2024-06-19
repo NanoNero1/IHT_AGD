@@ -28,8 +28,12 @@ class vanillaSGD(myOptimizer):
   def step(self):
     print(f"speed iteration {self.iteration}")
     self.logging()
+
+    self.easyPrintParams()
     self.updateWeights()
+    self.eastPrintParams()
     self.iteration +=1
+
     print('fixed vanilla SGD')
     return None
 
