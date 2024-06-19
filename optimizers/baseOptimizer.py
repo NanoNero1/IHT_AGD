@@ -37,6 +37,9 @@ class myOptimizer(Optimizer):
 
   """ Desc: logs various useful parameters -- is expensive to run on every iteration"""
   def logging(self):
+
+    print(f"============================================== ITERATION: {self.iteration}")
+
     # NOTE: iteration is checked here to make the code cleaner
     if self.iteration % self.loggingInterval == 0:
       # Functions to execute
