@@ -85,6 +85,7 @@ class myOptimizer(Optimizer):
     self.testAccuracy = accuracy
 
   def easyPrintParams(self):
+    # NOTE: the problem with this line is that it might create a NEW tensor (that won't have a gradient)
     #toPrint = 
     print(f"Weights: {self.param_groups[0]['params'][0][0].data}")
     print(f"Gradients: {self.param_groups[0]['params'][0][0].grad}")
