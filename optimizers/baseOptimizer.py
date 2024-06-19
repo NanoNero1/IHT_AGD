@@ -91,10 +91,10 @@ class myOptimizer(Optimizer):
       print(f"pInd: {pInd}")
       if pInd != 5:
         continue
-      print(f"Weights: {p.data[10]}")
-      print(f"Gradients: {p.grad[10]}")
-      print(f"smallGradients {p[1].data}")
-      print(f"smallGradients {p[1].grad}")
+      print(f"Weights: {p.data[:10]}")
+      print(f"Gradients: {p.grad[:10]}")
+      print(f"smallGradients {p[10].data}")
+      print(f"smallGradients {p[10].grad}")
 
     abort()
     #test comment
