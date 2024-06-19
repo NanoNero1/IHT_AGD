@@ -36,6 +36,7 @@ class vanillaAGD(vanillaSGD):
     self.iteration += 1
 
   def updateWeights(self):
+    print("AGD updateWeights")
     # Update z_t the according to the AGD equation in the note
     with torch.no_grad():
       for p in self.paramsIter():

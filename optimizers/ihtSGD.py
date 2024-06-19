@@ -70,10 +70,7 @@ class ihtSGD(vanillaSGD):
   ### PHASES ###
   def warmup(self):
     print('warmup')
-    self.easyPrintParams()
     self.updateWeights()
-    self.easyPrintParams()
-    abort()
 
   def truncateAndFreeze(self):
     print('truncateAndFreeze')
@@ -162,8 +159,8 @@ class ihtSGD(vanillaSGD):
       # Sparsity for this layer
       layerSparsity = torch.mean( (torch.abs(layer.data) > 0).type(torch.float) )
       layerName = f"layerSize{torch.numel(layer)}"
-      print(torch.numel(layer))
-      print(layer.shape)
+      #print(torch.numel(layer))
+      #print(layer.shape)
       # NOTE TO SELF: remember, the layer with 10 values isn't strange, it's just the bias layer
       #abort()
 

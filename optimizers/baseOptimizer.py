@@ -88,7 +88,7 @@ class myOptimizer(Optimizer):
     # NOTE: the problem with this line is that it might create a NEW tensor (that won't have a gradient)
     #toPrint = 
     for pInd,p in enumerate(self.paramsIter()):
-      print(f"pInd: {pInd}")
+      #print(f"pInd: {pInd}")
       if pInd != 5:
         continue
       print(f"Weights: {p.data[:10]}")

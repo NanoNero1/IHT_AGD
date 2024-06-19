@@ -39,6 +39,7 @@ class vanillaSGD(myOptimizer):
 
   # Regular Gradient Descent
   def updateWeights(self,**kwargs):
+    print("SGD updateWeights")
     # NOTE: unfortunately we do need the self keyword because we are using class instances
     for p in self.paramsIter():
         #y = p + 0.0
