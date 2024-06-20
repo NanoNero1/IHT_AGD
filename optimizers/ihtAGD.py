@@ -35,6 +35,9 @@ class ihtAGD(vanillaAGD,ihtSGD):
     # Freeze xt
     self.freeze(iterate='xt')
 
+    # Freeze zt
+    self.freeze(iterate='zt')
+
     pass
 
   """
@@ -126,5 +129,6 @@ class ihtAGD(vanillaAGD,ihtSGD):
     print('compressed step')
     self.updateWeightsTwo()
     self.refreeze()
+    self.refreeze('zt')
 
   ##########################################
