@@ -76,6 +76,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     self.sparsify()
 
+    #This ought to be put into a function
     for p in self.paramsIter():
         state = self.state[p]
         # we also update xt - NOTE: we do this because we have to put z_t in for the loss computation,
