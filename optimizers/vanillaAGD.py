@@ -35,6 +35,8 @@ class vanillaAGD(vanillaSGD):
     self.updateWeights()
     self.iteration += 1
 
+  ##############################################################################
+
   def updateWeights(self):
     print("AGD updateWeights")
     # Update z_t the according to the AGD equation in the note
@@ -65,7 +67,10 @@ class vanillaAGD(vanillaSGD):
         # NOTE: p.grad is now the gradient at zt
         p.data = state['xt'] - (1.0 / pow(self.alpha*self.beta , 0.5)) * p.grad
 
+    # We need to keep a separate storage of xt because we replace the actual network parameters
     self.copyXT()
+
+  ##########################################
 
   def getNewGrad(self,iterate):
     with torch.no_grad():
