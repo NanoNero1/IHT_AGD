@@ -22,7 +22,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
   # I checked this, it seems to work
   def truncateAndFreeze(self):
-    self.updateWeights()
+    self.updateWeightsSparse()
     print('this should work')
     # define zt
 
@@ -52,7 +52,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
         state = self.state[p]
         #First Get z_t+
         state['zt'] = (state['zt'] - (state['zt_oldGrad'] / self.beta) )
-        self.sparsify(iterate='zt')
+        #self.sparsify(iterate='zt')
 
 
         # And then we do the actual update, NOTE: zt is actually z_t+ right now
