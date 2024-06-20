@@ -121,4 +121,10 @@ class ihtAGD(vanillaAGD,ihtSGD):
     # We need to keep a separate storage of xt because we replace the actual network parameters
     self.copyXT()
 
+
+  def compressedStep(self):
+    print('compressed step')
+    self.updateWeightsTwo()
+    self.refreeze()
+
   ##########################################
