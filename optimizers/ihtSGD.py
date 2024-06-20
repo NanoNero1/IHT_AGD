@@ -143,7 +143,7 @@ class ihtSGD(vanillaSGD):
 
     for p in self.paramsIter():
       state = self.state[p]
-      if iterate == None:
+      if iterate == None or iterate == 'xt':
         layer = p.data
         # NOTE: I CHECKED IT!
         state['xt_frozen'] = (torch.abs(layer) > 0).type(torch.uint8)
