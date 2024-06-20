@@ -42,9 +42,18 @@ class ihtSGD(vanillaSGD):
   def sparsify(self,iterate=None):
     cutoff = self.getCutOff(iterate=iterate)
 
+    # THIS IS WHERE IT WENT WRONG
+
+    
     for p in self.paramsIter():
       #p.require_grad = False
-      p.data[torch.abs(p) <= cutoff] = 0.0
+      state = self.state[p]
+      if iterate == None or iterate == 'xt':
+        p.data[torch.abs(p) <= cutoff] = 0.0
+      else:
+        (state[iterate])[torch.abs(p) <= cutoff] = 0.0
+
+        
       #p.require_grad = True
 
   def compressOrDecompress(self):

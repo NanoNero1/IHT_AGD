@@ -22,6 +22,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
 
   def truncateAndFreeze(self):
+    self.updateWeights()
     print('this should work')
     # define zt
 
