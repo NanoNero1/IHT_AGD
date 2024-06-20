@@ -1,7 +1,7 @@
 setup_ihtAGD_SP70 = {
-    "setupID":"ihtAGD_SP70",
+    "setupID":"ihtAGD_SP90",
     "scheme":"ihtAGD" ,
-    "sparsity":0.70,
+    "sparsity":0.90,
     "kappa":5.0,
     "beta":100.0}
 
