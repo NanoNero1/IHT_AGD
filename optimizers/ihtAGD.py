@@ -18,9 +18,12 @@ class ihtAGD(vanillaAGD,ihtSGD):
     self.compressOrDecompress()
     self.iteration += 1
 
+  #def returnSparse(self):
+
 
   def truncateAndFreeze(self):
     # define zt
+
 
 
     # Truncate xt
@@ -32,4 +35,4 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     pass
 
-  def 
+  #def 
