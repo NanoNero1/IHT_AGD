@@ -17,3 +17,19 @@ class ihtAGD(vanillaAGD,ihtSGD):
     self.logging()
     self.compressOrDecompress()
     self.iteration += 1
+
+
+  def truncateAndFreeze(self):
+    # define zt
+
+
+    # Truncate xt
+    self.sparsify(iterate='xt')
+
+
+    # Freeze xt
+    self.freeze(iterate='xt')
+
+    pass
+
+  def 

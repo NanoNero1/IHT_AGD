@@ -43,8 +43,15 @@ class vanillaAGD(vanillaSGD):
 
         state = self.state[p]
 
+
+        #First Get z_t+
+        state['zt'] = (state['zt'] - (state['zt_oldGrad'] / self.beta) )
+
+        # And then we do the actual update, NOTE: zt is actually z_t+ right now
+        state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * state['zt'] + (1.0 / (self.sqKappa + 1.0)) * state['xt']
+
         #Find the new z_t
-        state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * (state['zt'] - (state['zt_oldGrad'] / self.beta) ) + (1.0 / (self.sqKappa + 1.0)) * state['xt']
+        #state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * (state['zt'] - (state['zt_oldGrad'] / self.beta) ) + (1.0 / (self.sqKappa + 1.0)) * state['xt']
 
     # CAREFUL! this changes the parameters for the model
     self.getNewGrad('zt')

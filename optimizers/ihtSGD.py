@@ -88,12 +88,18 @@ class ihtSGD(vanillaSGD):
     self.updateWeights()
 
   ### UTILITY FUNCTIONS ###
+  
+  # NOTE: Refreeze is not only for the PARAMS!
   def refreeze(self,iterate=None):
+    print('remember we need to give an iterate for refreeeze')
     for p in self.paramsIter():
       state = self.state[p]
       # TO-DO: make into modular string
       #p.mul_(state['xt_frozen'])
-      p.data *= state['xt_frozen']
+      if iterate == None:
+        p.data *= state['xt_frozen']
+      else:
+        state[iterate] *= state[f"{iterate}_frozen"]
 
   def getCutOff(self,sparsity=None,iterate=None):
     if sparsity == None:
@@ -130,11 +136,11 @@ class ihtSGD(vanillaSGD):
       state = self.state[p]
       if iterate == None:
         layer = p.data
+        # NOTE: I CHECKED IT!
+        state['xt_frozen'] = (torch.abs(layer) > 0).type(torch.uint8)
       else:
         layer = state[iterate]
-
-      # NOTE: I CHECKED IT!
-      state['xt_frozen'] = (torch.abs(layer) > 0).type(torch.uint8)
+        state[f"{iterate}_frozen"] = (torch.abs(layer) > 0).type(torch.uint8)
 
   def trackingSparsity(self):
     concatWeights = torch.zeros((1)).to(self.device)
