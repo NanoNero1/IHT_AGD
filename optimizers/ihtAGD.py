@@ -22,7 +22,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
   # I checked this, it seems to work
   def truncateAndFreeze(self):
-    self.updateWeights()
+    self.updateWeightsSparse()
     print('this should work')
     # define zt
 
@@ -37,7 +37,12 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     pass
 
-  def updateWeights(self):
+  def compressedStep(self):
+    print('compressed step')
+    self.updateWeightsSparse()
+    self.refreeze()
+
+  def updateWeightsSparse(self):
     print("AGD updateWeights (with sparse z_t and x_t)")
     # Update z_t the according to the AGD equation in the note
     with torch.no_grad():
@@ -74,6 +79,3 @@ class ihtAGD(vanillaAGD,ihtSGD):
         # we also update xt - NOTE: we do this because we have to put z_t in for the loss computation,
         # so it's nice to store x_t
         state['xt'] = p.data.detach().clone()
-
-
-  #def 
