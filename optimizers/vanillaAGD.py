@@ -65,8 +65,7 @@ class vanillaAGD(vanillaSGD):
         # NOTE: p.grad is now the gradient at zt
         p.data = state['xt'] - (1.0 / pow(self.alpha*self.beta , 0.5)) * p.grad
 
-        # we also update xt
-        state['xt'] = p.data.detach().clone()
+    self.copyXT
 
   def getNewGrad(self,iterate):
     with torch.no_grad():
@@ -89,3 +88,9 @@ class vanillaAGD(vanillaSGD):
       #print(p)
       #print('and now the gradient')
       #print(p.grad)
+
+  def copyXT(self):
+    with torch.no_grad():
+      for p in self.paramsIter():
+        state = self.state[p]
+        state['xt'] = p.data.clone().detach()
