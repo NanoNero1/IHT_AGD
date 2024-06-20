@@ -20,10 +20,9 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
   #def returnSparse(self):
 
-  """
   # I checked this, it seems to work
   def truncateAndFreeze(self):
-    self.updateWeightsSparse()
+    self.updateWeights()
     print('this should work')
     # define zt
 
@@ -37,7 +36,6 @@ class ihtAGD(vanillaAGD,ihtSGD):
     self.freeze(iterate='xt')
 
     pass
-  """
 
   """
   def compressedStep(self):
