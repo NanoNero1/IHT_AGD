@@ -1,5 +1,6 @@
 import torch
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
+import numpy as np
 
 ###############################################################################################################################################################
 # ---------------------------------------------------- IHT-SGD ------------------------------------------------------------------------------------------
@@ -32,6 +33,12 @@ class ihtSGD(vanillaSGD):
   def step(self):
     print('FIXED IHT SGD')
     print(f"speed iteration {self.iteration}")
+
+
+    # Sloppy but works
+    newSparsityIter = np.floor( (self.iteration - 100) / 80)
+    self.sparsity = 0.5 - 0.1*newSparsityIter
+
     self.logging()
     self.easyPrintParams()
     self.compressOrDecompress()
