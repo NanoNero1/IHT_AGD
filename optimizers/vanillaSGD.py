@@ -29,9 +29,9 @@ class vanillaSGD(myOptimizer):
     print(f"speed iteration {self.iteration}")
     self.logging()
 
-    #self.easyPrintParams()
+    self.easyPrintParams()
     self.updateWeights()
-    #self.easyPrintParams()
+    self.easyPrintParams()
     self.iteration +=1
 
     print('fixed vanilla SGD')
