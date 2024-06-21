@@ -112,6 +112,7 @@ class ihtSGD(vanillaSGD):
     for p in self.paramsIter():
       state = self.state[p]
       if iterate == None:
+        print("!!!!!!!!!!! this should sparsify the params")
         p.data[torch.abs(p) <= cutoff] = 0.0
       else:
         # NOTE: torch.abs(p) is wrong, maybe that's the bug

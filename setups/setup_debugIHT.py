@@ -16,4 +16,12 @@ setup_ihtAGD_SP90 = {
     "kappa":5.0,
     "beta":50.0}
 
-setups = [setup_ihtAGD_SP90,setup_vanilla_AGD,setup_vanilla_SGD]
+setup_ihtSGD_SP90 = {
+    "setupID":"ihtSGD_SP90",
+    "scheme":"ihtSGD" ,
+    "sparsity":0.90,
+    "beta":50.0}
+
+
+
+setups = [setup_ihtSGD_SP90,setup_ihtAGD_SP90,setup_vanilla_AGD,setup_vanilla_SGD]
