@@ -17,12 +17,9 @@ class ihtSGD(vanillaSGD):
     self.warmupLength = 100
 
     # State Initialization
-    for group in self.param_groups:
-      for p in group['params']:
-        state = self.state[p]
-        state['step'] = 0
-
-        state['xt_frozen'] = torch.ones_like(p)
+    for p in self.paramsIter():
+      state = self.state[p]
+      state['xt_frozen'] = torch.ones_like(p)
 
     self.methodName = "iht_SGD"
 
@@ -39,15 +36,7 @@ class ihtSGD(vanillaSGD):
     self.compressOrDecompress()
     self.iteration +=1
 
-  def sparsify(self,iterate=None):
-    cutoff = self.getCutOff(iterate=iterate)
-
-    for p in self.paramsIter():
-      state = self.state[p]
-      if iterate == None or iterate == 'xt':
-        p.data[torch.abs(p) <= cutoff] = 0.0
-      else:
-        (state[iterate])[torch.abs(p) <= cutoff] = 0.0
+  ########################################################
 
   def compressOrDecompress(self):
     howFarAlong = (self.iteration - self.warmupLength) % self.phaseLength
@@ -89,19 +78,17 @@ class ihtSGD(vanillaSGD):
     print('decompressed')
     self.updateWeights()
 
-  ### UTILITY FUNCTIONS ###
+  ### UTILITY FUNCTIONS ######################################################################################
   
-  # NOTE: Refreeze is not only for the PARAMS!
-  def refreeze(self,iterate=None):
-    print('remember we need to give an iterate for refreeeze')
+  def sparsify(self,iterate=None):
+    cutoff = self.getCutOff(iterate=iterate)
+
     for p in self.paramsIter():
       state = self.state[p]
-      # TO-DO: make into modular string
-      #p.mul_(state['xt_frozen'])
       if iterate == None:
-        p.data *= state['xt_frozen']
+        p.data[torch.abs(p) <= cutoff] = 0.0
       else:
-        state[iterate] *= state[f"{iterate}_frozen"]
+        (state[iterate])[torch.abs(p) <= cutoff] = 0.0
 
   def getCutOff(self,sparsity=None,iterate=None):
     if sparsity == None:
@@ -130,6 +117,18 @@ class ihtSGD(vanillaSGD):
     cutoff = vals[-1]
 
     return cutoff
+  
+  # NOTE: Refreeze is not only for the PARAMS!
+  def refreeze(self,iterate=None):
+    print('remember we need to give an iterate for refreeeze')
+    for p in self.paramsIter():
+      state = self.state[p]
+      # TO-DO: make into modular string
+      #p.mul_(state['xt_frozen'])
+      if iterate == None:
+        p.data *= state['xt_frozen']
+      else:
+        state[iterate] *= state[f"{iterate}_frozen"]
 
   def freeze(self,iterate=None):
     cutOff = self.getCutOff(iterate=iterate)

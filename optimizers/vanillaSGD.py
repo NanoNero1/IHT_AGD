@@ -29,9 +29,9 @@ class vanillaSGD(myOptimizer):
     print(f"speed iteration {self.iteration}")
     self.logging()
 
-    self.easyPrintParams()
+    #self.easyPrintParams()
     self.updateWeights()
-    self.eastPrintParams()
+    #self.easyPrintParams()
     self.iteration +=1
 
     print('fixed vanilla SGD')
@@ -42,8 +42,5 @@ class vanillaSGD(myOptimizer):
     print("SGD updateWeights")
     # NOTE: unfortunately we do need the self keyword because we are using class instances
     for p in self.paramsIter():
-        #y = p + 0.0
         # NOTE TO FUTURE DIMITRI: you need to add an underscore else this is considered as an operation that returns something (I think)
-        #print('GRADIENTS!!!!!!!!!!!!!')
-        #print(p.grad)
         p.add_(  (-1.0 / self.beta) * p.grad / pow(5, np.floor(self.iteration / 360))  )
