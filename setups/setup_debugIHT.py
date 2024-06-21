@@ -24,4 +24,4 @@ setup_ihtSGD_SP90 = {
 
 
 
-setups = [setup_ihtSGD_SP90,setup_ihtAGD_SP90,setup_vanilla_AGD,setup_vanilla_SGD]
+setups = [setup_ihtAGD_SP90,setup_ihtSGD_SP90,setup_vanilla_AGD,setup_vanilla_SGD]
