@@ -33,7 +33,9 @@ class ihtSGD(vanillaSGD):
     print('FIXED IHT SGD')
     print(f"speed iteration {self.iteration}")
     self.logging()
+    self.easyPrintParams()
     self.compressOrDecompress()
+    self.easyPrintParams()
     self.iteration +=1
 
   ########################################################
