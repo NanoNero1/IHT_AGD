@@ -79,16 +79,6 @@ class ihtSGD(vanillaSGD):
     self.updateWeights()
 
   ### UTILITY FUNCTIONS ######################################################################################
-  
-  def sparsify(self,iterate=None):
-    cutoff = self.getCutOff(iterate=iterate)
-
-    for p in self.paramsIter():
-      state = self.state[p]
-      if iterate == None:
-        p.data[torch.abs(p) <= cutoff] = 0.0
-      else:
-        (state[iterate])[torch.abs(p) <= cutoff] = 0.0
 
   def getCutOff(self,sparsity=None,iterate=None):
     if sparsity == None:
@@ -105,9 +95,7 @@ class ihtSGD(vanillaSGD):
       # CHECK: Make sure this flattening doesn't affect the original layer
       flatWeights = torch.flatten(layer)
       concatWeights = torch.cat((concatWeights,flatWeights),0)
-    
-    # Removing the first zero
-    concatWeights = concatWeights[1:]
+    concatWeights = concatWeights[1:] # Removing first zero
 
     # Converting the sparsity factor into an integer of respective size
     topK = int(len(concatWeights)*(1-sparsity))
@@ -117,6 +105,17 @@ class ihtSGD(vanillaSGD):
     cutoff = vals[-1]
 
     return cutoff
+  
+  def sparsify(self,iterate=None):
+    cutoff = self.getCutOff(iterate=iterate)
+
+    for p in self.paramsIter():
+      state = self.state[p]
+      if iterate == None:
+        p.data[torch.abs(p) <= cutoff] = 0.0
+      else:
+        # NOTE: torch.abs(p) is wrong, maybe that's the bug
+        (state[iterate])[torch.abs(state[iterate]) <= cutoff] = 0.0
   
   # NOTE: Refreeze is not only for the PARAMS!
   def refreeze(self,iterate=None):
