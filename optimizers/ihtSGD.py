@@ -43,6 +43,7 @@ class ihtSGD(vanillaSGD):
     cutoff = self.getCutOff(iterate=iterate)
 
     # THIS IS WHERE IT WENT WRONG
+    # NOTE: sparsify doesn't copy XT!
 
     
     for p in self.paramsIter():
