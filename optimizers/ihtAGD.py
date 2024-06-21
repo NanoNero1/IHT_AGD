@@ -38,12 +38,12 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
 
     # Truncate xt
-    self.sparsify(iterate='xt')
+    self.sparsify()
     self.copyXT()
 
 
     # Freeze xt
-    self.freeze(iterate='xt')
+    self.freeze()
 
     # Freeze zt
     self.freeze(iterate='zt')
