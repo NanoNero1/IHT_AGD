@@ -65,7 +65,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
         state['zt'] = (state['zt'] - (state['zt_oldGrad'] / self.beta) )
 
         #Then sparsify z_t+
-        self.sparsify('zt')
+        #self.sparsify('zt')
 
         # And then we do the actual update, NOTE: zt is actually z_t+ right now
         state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * state['zt'] + (1.0 / (self.sqKappa + 1.0)) * state['xt']

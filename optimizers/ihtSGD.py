@@ -42,20 +42,12 @@ class ihtSGD(vanillaSGD):
   def sparsify(self,iterate=None):
     cutoff = self.getCutOff(iterate=iterate)
 
-    # THIS IS WHERE IT WENT WRONG
-    # NOTE: sparsify doesn't copy XT!
-
-    
     for p in self.paramsIter():
-      #p.require_grad = False
       state = self.state[p]
       if iterate == None or iterate == 'xt':
         p.data[torch.abs(p) <= cutoff] = 0.0
       else:
         (state[iterate])[torch.abs(p) <= cutoff] = 0.0
-
-        
-      #p.require_grad = True
 
   def compressOrDecompress(self):
     howFarAlong = (self.iteration - self.warmupLength) % self.phaseLength
@@ -144,9 +136,9 @@ class ihtSGD(vanillaSGD):
 
     for p in self.paramsIter():
       state = self.state[p]
-      if iterate == None or iterate == 'xt':
-        layer = p.data
+      if iterate == None:
         # NOTE: I CHECKED IT!
+        layer = p.data
         state['xt_frozen'] = (torch.abs(layer) > 0).type(torch.uint8)
       else:
         layer = state[iterate]
@@ -171,22 +163,13 @@ class ihtSGD(vanillaSGD):
         flatLinear = torch.flatten(layer.data)
         concatLinear = torch.cat((concatLinear,flatLinear),0)
 
-
       # Sparsity for this layer
       layerSparsity = torch.mean( (torch.abs(layer.data) > 0).type(torch.float) )
       layerName = f"layerSize{torch.numel(layer)}"
-      #print(torch.numel(layer))
-      #print(layer.shape)
       # NOTE TO SELF: remember, the layer with 10 values isn't strange, it's just the bias layer
-      #abort()
-
 
       # Track the per-layer sparsity with size
-      #setattr(self,f"layerSize{torch.numel(layer)}")
       self.run[f"trials/{self.trialNumber}/{self.setupID}/{layerName}"].append(layerSparsity)
-
-    # NOTE TO SELF!!!!!!!!!!!!!!!!!!!
-    # the 0.99999999 is really just the extra 0 we added on from before, that's why it shows up in the graph
 
     # Removing the First Zero
     print('removed the first zero')
