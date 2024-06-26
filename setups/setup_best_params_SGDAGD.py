@@ -19,7 +19,27 @@ setup_ihtAGD_SP90_K10_B5 = {
     "kappa":10.0,
     "beta":5.0}
 
+####### SGD
 
-setups = [setup_ihtAGD_SP90_K5_B20,
-          setup_ihtAGD_SP90_K10_B20,
-          setup_ihtAGD_SP90_K10_B5]
+setup_ihtSGD_SP90_B1 = {
+    "setupID":"setup_ihtSGD_SP90_B1",
+    "scheme":"ihtSGD" ,
+    "sparsity":0.90,
+    "beta":1.0}
+
+setup_ihtSGD_SP90_B10 = {
+    "setupID":"setup_ihtSGD_SP90_B10",
+    "scheme":"ihtSGD" ,
+    "sparsity":0.90,
+    "beta":10.0}
+
+setup_ihtSGD_SP90_B100 = {
+    "setupID":"setup_ihtSGD_SP90_B100",
+    "scheme":"ihtSGD" ,
+    "sparsity":0.90,
+    "beta":100.0}
+
+
+setups = [setup_ihtSGD_SP90_B1,
+          setup_ihtSGD_SP90_B10,
+          setup_ihtSGD_SP90_B100]
