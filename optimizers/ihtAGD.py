@@ -80,7 +80,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     with torch.no_grad():
       for p in self.paramsIter():
-        print(p.grad)
+        #print(p.grad)
         # CHECK: Is it still the same state?
         state = self.state[p]
         state['zt_oldGrad'] = p.grad.clone().detach()
