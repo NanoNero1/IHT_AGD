@@ -50,13 +50,6 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     pass
 
-  """
-  def compressedStep(self):
-    print('compressed step')
-    self.updateWeightsSparse()
-    self.refreeze()
-  """
-
   ##############################################################################
 
   def updateWeightsTwo(self):
