@@ -14,6 +14,7 @@ class vanillaAGD(vanillaSGD):
     # Objective Function Property Variables
     self.alpha = self.beta / self.kappa
     self.sqKappa = pow(self.kappa,0.5)
+    self.loss_zt = 0.0
 
 
     for p in self.paramsIter():
@@ -87,6 +88,11 @@ class vanillaAGD(vanillaSGD):
     newOutput = self.model(data)
     loss = F.nll_loss(newOutput, target)
     loss.backward()
+
+    if iterate == "zt":
+      self.loss_zt = float(loss.clone().detatch())
+
+    
 
     # CHECK: see if this works as intended
     #for p in self.paramsIter():
