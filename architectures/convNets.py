@@ -41,10 +41,8 @@ class MNIST_convNet(nn.Module):
     def __init__(self):
         super(MNIST_convNet, self).__init__()
 
-        
-        self.conv1 = nn.Conv2d(1, 32, 5, 1)
 
-        self.fc0 = nn.Linear(4608, 4608)
+        self.conv1 = nn.Conv2d(1, 32, 5, 1)
         self.fc1 = nn.Linear(4608, 128)
         self.fc2 = nn.Linear(128, 10)
         
