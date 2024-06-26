@@ -90,7 +90,7 @@ class vanillaAGD(vanillaSGD):
     loss.backward()
 
     if iterate == "zt":
-      self.loss_zt = float(loss.clone().detatch())
+      self.loss_zt = float(loss.clone().detach())
 
     
 
