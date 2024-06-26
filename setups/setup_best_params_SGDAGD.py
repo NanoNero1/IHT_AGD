@@ -21,11 +21,11 @@ setup_ihtAGD_SP90_K10_B5 = {
 
 ####### SGD
 
-setup_ihtSGD_SP90_B1 = {
-    "setupID":"setup_ihtSGD_SP90_B1",
+setup_ihtSGD_SP90_B5 = {
+    "setupID":"setup_ihtSGD_SP90_B5",
     "scheme":"ihtSGD" ,
     "sparsity":0.90,
-    "beta":1.0}
+    "beta":5.0}
 
 setup_ihtSGD_SP90_B10 = {
     "setupID":"setup_ihtSGD_SP90_B10",
@@ -40,6 +40,6 @@ setup_ihtSGD_SP90_B100 = {
     "beta":100.0}
 
 
-setups = [setup_ihtSGD_SP90_B1,
+setups = [setup_ihtSGD_SP90_B5,
           setup_ihtSGD_SP90_B10,
           setup_ihtSGD_SP90_B100]
