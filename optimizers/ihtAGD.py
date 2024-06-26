@@ -17,8 +17,8 @@ class ihtAGD(vanillaAGD,ihtSGD):
     print(f"speed iteration {self.iteration}")
 
     # Sloppy but works
-    newSparsityIter = np.floor( (self.iteration - 100) / 80)
-    self.sparsity = min(0.9, 0.5 + 0.1*newSparsityIter)
+    #newSparsityIter = np.floor( (self.iteration - 100) / 80)
+    #self.sparsity = min(0.9, 0.5 + 0.1*newSparsityIter)
 
     self.logging()
 
