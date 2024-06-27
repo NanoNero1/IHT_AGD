@@ -69,6 +69,7 @@ class MNIST_convNet(nn.Module):
         #x = F.sigmoid(x)
         x = F.leaky_relu(x)
         x = self.fc2(x)
+        print('leaaaaaaaaaaaaakyyyyyyyyyyyyyyyyyyyyyyy RELU')
 
         # Softmax so that we output probabilities (i.e. adds up to 1)
         output = F.log_softmax(x, dim=1)
