@@ -7,7 +7,18 @@ class untouchedBias_ihtAGD(ihtAGD):
     super().__init__(params,**kwargs)
     self.methodName = "iht_AGD"
 
-  def sparsify():
+  def step(self):
+    for p in self.paramsIter():
+      print(p.shape)
+      
+      if len(p.shape) == 1:
+       
+        abort()
+        continue
+
+
+
+  def sparsify(self):
     print('The Bias Nodes should not be sparsified')
 
   def sparsify(self,iterate=None):
