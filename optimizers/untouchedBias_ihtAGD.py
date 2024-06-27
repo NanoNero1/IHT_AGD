@@ -7,34 +7,16 @@ class untouchedBias_ihtAGD(ihtAGD):
     super().__init__(params,**kwargs)
     self.methodName = "iht_AGD"
 
-  def step(self):
-    for p in self.paramsIter():
-      print(p.shape)
-      
-      if len(p.shape) == 1:
-       
-        abort()
-        continue
-
-
-
-  def sparsify(self):
-    print('The Bias Nodes should not be sparsified')
-
   def sparsify(self,iterate=None):
+    print('The Bias Nodes should not be sparsified')
     
     #
     cutoff = self.getCutOff(iterate=iterate)
 
     for p in self.paramsIter():
-      print(p.shape)
-      
+
       if len(p.shape) == 1:
-       
-        abort()
         continue
-
-
 
       state = self.state[p]
       if iterate == None:
@@ -43,6 +25,21 @@ class untouchedBias_ihtAGD(ihtAGD):
       else:
         # NOTE: torch.abs(p) is wrong, maybe that's the bug
         (state[iterate])[torch.abs(state[iterate]) <= cutoff] = 0.0
+  
+  # NOTE: Refreeze is not only for the PARAMS!
+  def refreeze(self,iterate=None):
+    print('the bias nodes should not be refrozen')
+    for p in self.paramsIter():
+      if len(p.shape) == 1:
+        continue
+
+      state = self.state[p]
+      # TO-DO: make into modular string
+      #p.mul_(state['xt_frozen'])
+      if iterate == None:
+        p.data *= state['xt_frozen']
+      else:
+        state[iterate] *= state[f"{iterate}_frozen"]
 
 
 
