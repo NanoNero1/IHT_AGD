@@ -19,7 +19,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
     # Sloppy but works
     #newSparsityIter = np.floor( (self.iteration - 100) / 80)
     #self.sparsity = min(0.9, 0.5 + 0.1*newSparsityIter)
-
+    self.easyPrintParams()
     self.logging()
 
     
