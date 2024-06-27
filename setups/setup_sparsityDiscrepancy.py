@@ -19,6 +19,6 @@ setup_ihtAGD_SP90_K10_B100 = {
     "kappa":10.0,
     "beta":100.0}
 
-setups = [setup_ihtAGD_SP90_K10_B20,
-          setup_ihtAGD_SP90_K10_B10,
+setups = [setup_ihtAGD_SP90_K10_B10,
+          setup_ihtAGD_SP90_K10_B20,
           setup_ihtAGD_SP90_K10_B100]
