@@ -2,7 +2,7 @@ import torch
 from IHT_AGD.optimizers.ihtAGD import ihtAGD
 import numpy as np
 
-class ihtAGD(ihtAGD):
+class untouchedBias_ihtAGD(ihtAGD):
   def __init__(self,params,**kwargs):
     super().__init__(params,**kwargs)
     self.methodName = "iht_AGD"

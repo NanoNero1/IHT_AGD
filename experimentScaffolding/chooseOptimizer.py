@@ -2,6 +2,7 @@ from IHT_AGD.optimizers.vanillaAGD import vanillaAGD
 from IHT_AGD.optimizers.ihtAGD import ihtAGD
 from IHT_AGD.optimizers.ihtSGD import ihtSGD
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
+from IHT_AGD.optimizer.untouchedBias_ihtAGD import untouchedBias_ihtAGD
 import sys
 
 def str_to_class(classname):
@@ -9,6 +10,8 @@ def str_to_class(classname):
 
 # NOTE: This function has been DEPRECATED
 # nonetheless it might still be useful for debugging purposes in the future
+
+####################################################################### DEPRECATED #################################################
 def chooseOptimizer(setup,model,trialNumber,device=None):
   match setup["scheme"]:
     case "vanillaSGD":
@@ -24,7 +27,7 @@ def chooseOptimizer(setup,model,trialNumber,device=None):
          optimizer = ihtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model,device = device)
     case "untouchedIhtAGD":
         pass
-        #optimizer = untouchedIhtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model)
+        optimizer = untouchedIhtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model)
     case "pytorchSGD":
         pass
         #optimizer = dimitriPytorchSGD(model.parameters(),beta=3.0)#torch.optim.SGD(model.parameters(), lr=1.0/3.0)
@@ -33,6 +36,8 @@ def chooseOptimizer(setup,model,trialNumber,device=None):
         #action-default
   optimizer.trialNumber = trialNumber
   return optimizer
+#####################################################################DEPRECATED########################################
+
 
 # NOTE: this is the function currently in use
 def fixedChooseOptimizer(setup,model,**kwargs):
