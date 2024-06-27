@@ -2,7 +2,7 @@ from IHT_AGD.optimizers.vanillaAGD import vanillaAGD
 from IHT_AGD.optimizers.ihtAGD import ihtAGD
 from IHT_AGD.optimizers.ihtSGD import ihtSGD
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
-from IHT_AGD.optimizer.untouchedBias_ihtAGD import untouchedBias_ihtAGD
+from IHT_AGD.optimizers.untouchedBias_ihtAGD import untouchedBias_ihtAGD
 import sys
 
 def str_to_class(classname):
