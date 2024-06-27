@@ -60,12 +60,14 @@ class MNIST_convNet(nn.Module):
         
         x = self.conv1(x)
         #x = F.relu(x)
-        x = F.sigmoid(x)
+        #x = F.sigmoid(x)
+        x = F.leaky_relu(x)
         x = F.max_pool2d(x, 2)
         x = torch.flatten(x, 1)
         x = self.fc1(x)
         #x = F.relu(x)
-        x = F.sigmoid(x)
+        #x = F.sigmoid(x)
+        x = F.leaky_relu(x)
         x = self.fc2(x)
 
         # Softmax so that we output probabilities (i.e. adds up to 1)
