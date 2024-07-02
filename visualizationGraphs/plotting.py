@@ -18,7 +18,7 @@ def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1,ylims=[0,1]):
   # TO-DO: a function for this long line of code? just want the values
   # TO-DO: this is based on the default amount of iterations, depending on the logging it might make a confusing graph
   if metricName != "loss":
-    iterations = seeRun[f"trials/0/{setupIDs[0]}/iteration"].fetch_values()["value"]
+    iterations = [i for i in seeRun[f"trials/0/{setupIDs[0]}/{metricName}"].fetch_values()["value"]]
   else:
     iterations = [i for i in range(len( seeRun[f"trials/0/{setupIDs[0]}/loss"].fetch_values()["value"] )) ]
 
