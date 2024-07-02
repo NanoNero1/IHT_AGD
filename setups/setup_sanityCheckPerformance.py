@@ -23,4 +23,7 @@ setup_vanillaSGD_B10 = {
     "beta":10.0}
 
 
-setups = []
+setups = [setup_ihtAGD_SP90_K10_B20,
+          setup_ihtSGD_SP90_B10,
+          setup_vanillaSGD_B10]
+
