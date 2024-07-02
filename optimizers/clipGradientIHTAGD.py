@@ -9,7 +9,7 @@ import numpy as np
 class clipGradientIHTAGD(ihtAGD):
   def __init__(self,params,**kwargs):
     super().__init__(params,**kwargs)
-    self.methodName = "iht_AGD"
+    self.methodName = "clipGradientIHTAGD"
     self.alpha = self.beta / self.kappa
 
   def clipGradients(self,clipAmt=0.01):
