@@ -45,5 +45,5 @@ match datasetChoice:
 
 
 # Data Loaders : These also allow us to test performance ad-hoc
-train_loader = torch.utils.data.DataLoader(dataset1,batch_size=1000,shuffle=True)
-test_loader = torch.utils.data.DataLoader(dataset2,batch_size=1000,shuffle=True)
+train_loader = torch.utils.data.DataLoader(dataset1,batch_size=1000,shuffle=True,drop_last=True)
+test_loader = torch.utils.data.DataLoader(dataset2,batch_size=1000,shuffle=True,drop_last=True)
