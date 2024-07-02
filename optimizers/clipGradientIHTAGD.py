@@ -20,7 +20,7 @@ class clipGradientIHTAGD(ihtAGD):
 
   def updateWeightsTwo(self):
 
-    print("AGD updateWeights")
+    print("AGD updateWeights AND CLIP!!!!")
     # Update z_t the according to the AGD equation in the note
 
     with torch.no_grad():
