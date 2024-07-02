@@ -94,8 +94,8 @@ class myOptimizer(Optimizer):
       #print(f"pInd: {pInd}")
       if pInd != 3:
         continue
-      print(f"Weights: {p.data[:100]}")
-      print(f"Gradients: {p.grad[:100]}")
+      print(f"Weights: {p.data[:10]}")
+      print(f"Gradients: {p.grad[:10]}")
       #print(f"smallGradients {p[9].data}")
       #print(f"smallGradients {p[9].grad}")
       #print(f"tryOutSwitch: {p[:10].grad} ")
