@@ -13,6 +13,7 @@ class clipGradientIHTAGD(ihtAGD):
     self.alpha = self.beta / self.kappa
 
   def clipGradients(self,clipAmt=0.01):
+    print("I AM CLIPPING!!!!!!")
     torch.nn.utils.clip_grad_norm_(self.params, max_norm=clipAmt)
     pass
 
