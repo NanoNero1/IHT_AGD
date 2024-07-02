@@ -1,4 +1,4 @@
-#untouchedBias_ihtAGD
+### EXPERIMENT NUMBER 02
 
 setup_untouchedBias_ihtAGD_SP95_K10_B20 = {
     "setupID":"setup_untouchedBias_ihtAGD_SP95_K10_B10",
@@ -29,7 +29,5 @@ setup_ihtAGD_SP99_K10_B20 = {
     "beta":20.0}
 
 setups = [setup_untouchedBias_ihtAGD_SP95_K10_B20,
-          setup_ihtAGD_SP95_K10_B20,
-          setup_untouchedBias_ihtAGD_SP99_K10_B20,
-          setup_ihtAGD_SP99_K10_B20,
+          setup_ihtAGD_SP95_K10_B20
           ]
