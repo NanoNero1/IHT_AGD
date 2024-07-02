@@ -5,8 +5,6 @@ from neptune import Run
 
 def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1,ylims=[0,1]):
 
-  plt.ylim(ylims[0], ylims[1]) 
-
   #abort()
   print('did this update?')
   plt.figure(figsize=(40,10))
@@ -46,11 +44,14 @@ def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1,ylims=[0,1]):
   plt.legend(loc="upper right")
   #plt.show()
 
+  plt.ylim(ylims[0], ylims[1]) 
 
   print("now it should not be blank")
 
   #Save the figure
   plt.savefig('bestNew_test_title.png')
+
+
 
   # Show the plot
   plt.show()
