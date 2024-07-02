@@ -3,7 +3,9 @@ import numpy as np
 from neptune import Run
 
 
-def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1):
+def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1,ylims=None):
+
+  plt.ylim(ylims[0], ylims[1]) 
 
   #abort()
   print('did this update?')
