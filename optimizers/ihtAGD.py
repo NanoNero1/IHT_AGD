@@ -33,6 +33,10 @@ class ihtAGD(vanillaAGD,ihtSGD):
     print('decompressed')
     self.updateWeightsTwo()
 
+  def warmup(self):
+    print('warmup')
+    self.updateWeightsTwo()
+
   # I checked this, it seems to work
   def truncateAndFreeze(self):
     self.updateWeightsTwo()
