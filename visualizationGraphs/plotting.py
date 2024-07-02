@@ -3,7 +3,7 @@ import numpy as np
 from neptune import Run
 
 
-def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1,ylims=None):
+def plotMetric(runID=None,metricName=None,setupIDs=None,trials=1,ylims=[0,1]):
 
   plt.ylim(ylims[0], ylims[1]) 
 
