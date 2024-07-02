@@ -29,10 +29,6 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
   #def returnSparse(self):
 
-  def decompressed(self):
-    print('decompressed')
-    self.updateWeightsTwo()
-
   # I checked this, it seems to work
   def truncateAndFreeze(self):
     self.updateWeightsTwo()
@@ -94,12 +90,3 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     # We need to keep a separate storage of xt because we replace the actual network parameters
     self.copyXT()
-
-
-  def compressedStep(self):
-    print('compressed step')
-    self.updateWeightsTwo()
-    self.refreeze()
-    #self.refreeze('zt')
-
-  ##########################################

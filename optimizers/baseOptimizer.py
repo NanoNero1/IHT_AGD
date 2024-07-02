@@ -100,10 +100,6 @@ class myOptimizer(Optimizer):
       #print(f"smallGradients {p[9].grad}")
       #print(f"tryOutSwitch: {p[:10].grad} ")
 
-  def clipGradients(self,clipAmt=0.01):
-    torch.nn.utils.clip_grad_norm_(self.params, max_norm=clipAmt)
-    pass
-
 
   """ Desc: when we add extra kwargs that aren't recognized, we add them to our variables by default"""
   def dealWithKwargs(self,keywordArgs):
