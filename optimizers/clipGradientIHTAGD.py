@@ -1,56 +1,21 @@
 import torch
-from IHT_AGD.optimizers.vanillaAGD import vanillaAGD
-from IHT_AGD.optimizers.ihtSGD import ihtSGD
+from IHT_AGD.optimizers.ihtAGD import ihtAGD
 import numpy as np
 
 ###############################################################################################################################################################
 # ---------------------------------------------------- IHT-AGD ------------------------------------------------------------------------------------------
 ###############################################################################################################################################################
 
-class ihtAGD(vanillaAGD,ihtSGD):
+class clipGradientIHTAGD(ihtAGD):
   def __init__(self,params,**kwargs):
     super().__init__(params,**kwargs)
     self.methodName = "iht_AGD"
     self.alpha = self.beta / self.kappa
 
-  def step(self):
-    print(f"speed iteration {self.iteration}")
-
-    # Sloppy but works
-    #newSparsityIter = np.floor( (self.iteration - 100) / 80)
-    #self.sparsity = min(0.9, 0.5 + 0.1*newSparsityIter)
-    self.easyPrintParams()
-    self.logging()
-
-    
-
-    self.compressOrDecompress()
-    self.iteration += 1
-
-  #def returnSparse(self):
-
-  # I checked this, it seems to work
-  def truncateAndFreeze(self):
-    self.updateWeightsTwo()
-    print('this should work')
-    # define zt
-
-
-
-    # Truncate xt
-    self.sparsify()
-    self.copyXT()
-
-
-    # Freeze xt
-    self.freeze()
-
-    # Freeze zt
-    #self.freeze(iterate='zt')
-
+  def clipGradients(self,clipAmt=0.01):
+    torch.nn.utils.clip_grad_norm_(self.params, max_norm=clipAmt)
     pass
 
-  ##############################################################################
 
   def updateWeightsTwo(self):
 
@@ -77,6 +42,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
 
     # CAREFUL! this changes the parameters for the model
     self.getNewGrad('zt')
+    self.clipGradients()
 
     with torch.no_grad():
       for p in self.paramsIter():

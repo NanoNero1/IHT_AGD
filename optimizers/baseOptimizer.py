@@ -100,7 +100,6 @@ class myOptimizer(Optimizer):
       #print(f"smallGradients {p[9].grad}")
       #print(f"tryOutSwitch: {p[:10].grad} ")
 
-
   """ Desc: when we add extra kwargs that aren't recognized, we add them to our variables by default"""
   def dealWithKwargs(self,keywordArgs):
     for key, value in keywordArgs.items():
