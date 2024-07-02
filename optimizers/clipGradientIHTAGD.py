@@ -16,7 +16,9 @@ class clipGradientIHTAGD(ihtAGD):
     print("I AM CLIPPING!!!!!!")
 
     #torch.nn.utils.clip_grad_norm_(self.param_groups[0]['params'],norm_type='inf', max_norm=clipAmt)
-    torch.clamp(self.param_groups[0]['params'],min=-1.0*clipAmt,clipAmt=1.0)
+    torch.nn.utils.clip_grad_value_(self.param_groups[0]['params'],clip_value=clipAmt)
+    #for i 
+    #torch.clamp(self.param_groups[0]['params'],min=-1.0*clipAmt,clipAmt=1.0)
     pass
 
 
