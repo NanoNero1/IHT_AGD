@@ -7,9 +7,9 @@ setup_untouchedBias_ihtAGD_SP95_K10_B20 = {
     "kappa":10.0,
     "beta":20.0}
 
-setup_ihtAGD_SP95_K10_B20 = {
-    "setupID":"setup_ihtAGD_SP95_K10_B20",
-    "scheme":"ihtAGD" ,
+setup_clipGradientIHTAGD_SP95_K10_B20 = {
+    "setupID":"setup_clipGradientIHTAGD_SP95_K10_B20",
+    "scheme":"clipGradientIHTAGD" ,
     "sparsity":0.95,
     "kappa":10.0,
     "beta":20.0}
@@ -29,5 +29,5 @@ setup_ihtAGD_SP99_K10_B20 = {
     "beta":20.0}
 
 setups = [setup_untouchedBias_ihtAGD_SP95_K10_B20,
-          setup_ihtAGD_SP95_K10_B20
+          setup_clipGradientIHTAGD_SP95_K10_B20
           ]

@@ -1,11 +1,23 @@
 import torch
-from IHT_AGD.optimizers.ihtAGD import ihtAGD
+#from IHT_AGD.optimizers.ihtAGD import ihtAGD
+from IHT_AGD.optimizers.clipGradientIHTAGD import clipGradientIHTAGD
+#clipGradientIHTAGD(
 import numpy as np
 
-class untouchedBias_ihtAGD(ihtAGD):
+class untouchedBias_ihtAGD(clipGradientIHTAGD):
   def __init__(self,params,**kwargs):
     super().__init__(params,**kwargs)
     self.methodName = "iht_AGD"
+
+
+  def clipGradients(self,clipAmt=0.01):
+    print("I AM CLIPPING!!!!!!")
+
+    #torch.nn.utils.clip_grad_norm_(self.param_groups[0]['params'],norm_type='inf', max_norm=clipAmt)
+    torch.nn.utils.clip_grad_value_(self.param_groups[0]['params'],clip_value=clipAmt)
+    #for i 
+    #torch.clamp(self.param_groups[0]['params'],min=-1.0*clipAmt,clipAmt=1.0)
+    pass
 
   def sparsify(self,iterate=None):
     print('The Bias Nodes should not be sparsified')
@@ -40,17 +52,4 @@ class untouchedBias_ihtAGD(ihtAGD):
         p.data *= state['xt_frozen']
       else:
         state[iterate] *= state[f"{iterate}_frozen"]
-
-
-
-
-  
-
-# TO - DO:
-# for the bias nodes to be untouched, they must 
-# a) not be sparsified - sparsify()
-# a.a) the cutoff has to be changed too ... technically
-# b) not be re-frozen? - refreeze()
-# I think thats it?
-# oh and look at trackSparsityBias
 
