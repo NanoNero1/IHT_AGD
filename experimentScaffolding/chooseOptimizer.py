@@ -4,6 +4,7 @@ from IHT_AGD.optimizers.ihtSGD import ihtSGD
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
 from IHT_AGD.optimizers.untouchedBias_ihtAGD import untouchedBias_ihtAGD
 from IHT_AGD.optimizers.clipGradientIHTAGD import clipGradientIHTAGD
+from IHT_AGD.optimizers.ztSparse_ihtAGD import ztSparse_ihtAGD
 import sys
 
 def str_to_class(classname):
