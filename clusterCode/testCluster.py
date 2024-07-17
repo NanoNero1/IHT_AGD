@@ -1,5 +1,9 @@
-print('hello world')
+print(__file__)
 
-f = open("demofile2.txt", "a")
-f.write("Now the file has more content!")
-f.close()
+import os
+cwd = os.getcwd()
+print(cwd)
+
+#f = open("demofile2.txt", "a")
+#f.write("Now the file has more content!")
+#f.close()
