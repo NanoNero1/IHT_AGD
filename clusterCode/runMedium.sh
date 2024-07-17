@@ -11,5 +11,4 @@ module load cuda/11.1 python/anaconda3
 
 eval "$(conda shell.bash hook)"  
 conda activate medenv 
-jupyter notebook
-##python testCluster.py
+python testCUDA.py
