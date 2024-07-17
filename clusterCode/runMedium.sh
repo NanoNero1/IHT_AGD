@@ -7,7 +7,7 @@
 #SBATCH --time=00:01:00          # total run time limit (HH:MM:SS)
 
 module purge
-module load cuda/11.1 python/anaconda3
+module load python/anaconda3
 
 eval "$(conda shell.bash hook)"  
 conda activate medenv 
