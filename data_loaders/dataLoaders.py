@@ -26,12 +26,13 @@ match datasetChoice:
     if p.exists():
       pass
     else:
-      abort()
-      raise("Raise Error - data not found")
+      pass
+      #abort()
+      #raise("Raise Error - data not found")
 
 
-    dataset1 = datasets.MNIST('../data', train=True, download=False,transform=transform)
-    dataset2 = datasets.MNIST('../data', train=False,download=False,transform=transform)
+    dataset1 = datasets.MNIST('../data', train=True, download=True,transform=transform)
+    dataset2 = datasets.MNIST('../data', train=False,download=True,transform=transform)
 
     # setup information?
   case "CIFAR":
