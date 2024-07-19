@@ -9,5 +9,5 @@ module purge
 module load python/anaconda3
 
 eval "$(conda shell.bash hook)"  
-conda activate nedenv 
+conda activate redenv 
 python testCUDA.py
