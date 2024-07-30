@@ -11,7 +11,7 @@ import json
 """ Desc these functions actually run the experiments and capture the model references"""
 
 def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs):
-
+  abort()
   match datasetChoice:
     case "MNIST":
       model = MNIST_convNet().to(kwargs['device'])
