@@ -28,10 +28,11 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
         #  for p in group['params']:
         #    print(p.grad)
 
+        print("THIS SHOULD GIVE AN OUTPUT! IF NEPTUNE IS JUST A WARNING")
+
         # Generating Predictions and Calculating Loss
         output = model(data)
         loss = F.nll_loss(output, target)
-
 
         # NOTE: maybe this is the thing that causes a Neptune NoneError
         print(f"print loss:{loss}")
