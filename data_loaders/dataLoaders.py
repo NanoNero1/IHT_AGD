@@ -13,6 +13,7 @@ from pathlib import Path
   Target: digit 0-9,
 """
 datasetChoice = "MNIST"
+abort()
 
 match datasetChoice:
   case "MNIST":
