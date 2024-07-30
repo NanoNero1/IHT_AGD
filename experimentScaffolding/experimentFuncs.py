@@ -39,7 +39,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     scheduler.step()
   return model
 
-def runMainExperiment(setups,epochs=5,trialNumber=0,**kwargs):
+def runMainExperiment(setups,epochs=5,trialNumber=0,datasetChoice="MNIST",**kwargs):
 
   print(kwargs)
   defaults = {"epochs":epochs}
@@ -51,7 +51,7 @@ def runMainExperiment(setups,epochs=5,trialNumber=0,**kwargs):
   all_models = [[] for i in range((len(setups)))]
   for idx in range(len(setups)):
     print(trialNumber)
-    all_models[idx] = runOneExperiment(setups[idx],trialNumber=trialNumber,**kwargs)
+    all_models[idx] = runOneExperiment(setups[idx],trialNumber=trialNumber,datasetChoice=datasetChoice,**kwargs)
   return all_models
 
 def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
