@@ -4,6 +4,7 @@ from IHT_AGD.architectures.convNets import MNIST_convNet
 from IHT_AGD.architectures.convNets import basicNeuralNet
 import torch
 from IHT_AGD.modelTrainTest.trainLoop import train
+from torchvision.models import resnet50
 
 import json 
 
@@ -18,6 +19,8 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     case "CIFAR":
       abort()
       model = CIFAR_convNet().to(kwargs['device'])
+    case "IMAGENET":
+      model = resnet50().to(kwargs['device'])
 
   #optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
   optimizer = fixedChooseOptimizer(setup,model,**(kwargs | {'trialNumber':trialNumber}))

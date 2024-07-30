@@ -26,9 +26,9 @@ match datasetChoice:
     if p.exists():
       pass
     else:
-      pass
-      #abort()
-      #raise("Raise Error - data not found")
+      #pass
+      abort()
+      raise("Raise Error - data not found")
 
 
     dataset1 = datasets.MNIST('../data', train=True, download=True,transform=transform)
