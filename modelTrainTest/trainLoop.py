@@ -32,11 +32,13 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
 
         # Generating Predictions and Calculating Loss
         output = model(data)
+        output = F.log_softmax(output, dim=1)
         loss = F.nll_loss(output, target)
 
         # NOTE: maybe this is the thing that causes a Neptune NoneError
         print(f"print loss:{loss}")
         ###LOG### Loss
+        abort()
         run[f"trials/{optimizer.trialNumber}/{optimizer.setupID}/loss"].append(loss)
 
         loss.backward()

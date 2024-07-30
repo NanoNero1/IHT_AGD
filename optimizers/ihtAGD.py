@@ -22,7 +22,7 @@ class ihtAGD(vanillaAGD,ihtSGD):
     self.easyPrintParams()
     self.logging()
 
-    
+    print('we got this far at least then')
 
     self.compressOrDecompress()
     self.iteration += 1
