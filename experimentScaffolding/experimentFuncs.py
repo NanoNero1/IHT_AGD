@@ -78,5 +78,5 @@ def runPipeline(setups,datasetChoice="MNIST",epochs=1,trials=1,**kwargs):
   run["setupDict"].upload("setups.json")
 
   for trial in range(trials):
-    runMainExperiment(setups,epochs=epochs,trialNumber=trial,**kwargs)
+    runMainExperiment(setups,epochs=epochs,trialNumber=trial,datasetChoice=datasetChoice**kwargs)
 
