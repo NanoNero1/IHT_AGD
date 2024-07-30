@@ -11,7 +11,6 @@ import json
 """ Desc these functions actually run the experiments and capture the model references"""
 
 def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs):
-  abort()
   match datasetChoice:
     case "MNIST":
       model = MNIST_convNet().to(kwargs['device'])
@@ -21,6 +20,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
       model = CIFAR_convNet().to(kwargs['device'])
     case "IMAGENET":
       model = resnet50().to(kwargs['device'])
+      print("THEEEEEEEEEEEEEE MODEL IS NOW RESNET!")
 
   #optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
   optimizer = fixedChooseOptimizer(setup,model,**(kwargs | {'trialNumber':trialNumber}))
