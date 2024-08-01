@@ -51,9 +51,7 @@ match datasetChoice:
     # note to self: I just remembered! we are applying the MNIST transformation to CIFAR,
     # obviously this is a bad idea. CHECK: is CIFAR already normalized, if it isn't, normalize it
     ##abort()
-    transform = transforms.Compose([
-      transforms.RandomHorizontalFlip(), # randomly flip and rotate
-      transforms.RandomRotation(10),transforms.ToTensor(),
+    transform = transforms.Compose([transforms.ToTensor(),
       transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     # Select training_set and testing_set
@@ -63,5 +61,5 @@ match datasetChoice:
 
 
 # Data Loaders : These also allow us to test performance ad-hoc
-train_loader = torch.utils.data.DataLoader(dataset1,batch_size=1000,shuffle=True,drop_last=True)
-test_loader = torch.utils.data.DataLoader(dataset2,batch_size=1000,shuffle=True,drop_last=True)
+train_loader = torch.utils.data.DataLoader(dataset1,batch_size=64,shuffle=True,drop_last=True)
+test_loader = torch.utils.data.DataLoader(dataset2,batch_size=64,shuffle=True,drop_last=True)
