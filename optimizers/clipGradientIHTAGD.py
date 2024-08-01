@@ -12,7 +12,7 @@ class clipGradientIHTAGD(ihtAGD):
     self.methodName = "clipGradientIHTAGD"
     self.alpha = self.beta / self.kappa
 
-  def clipGradients(self,clipAmt=0.01):
+  def clipGradients(self,clipAmt=0.001):
     print("I AM CLIPPING!!!!!!")
 
     #torch.nn.utils.clip_grad_norm_(self.param_groups[0]['params'],norm_type='inf', max_norm=clipAmt)
