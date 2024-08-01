@@ -39,10 +39,16 @@ match datasetChoice:
     # NOTE Right now CIFAR shouldn't work - I forgot why unfortunately
     # note to self: I just remembered! we are applying the MNIST transformation to CIFAR,
     # obviously this is a bad idea. CHECK: is CIFAR already normalized, if it isn't, normalize it
-    abort()
-    ############################ OOOOOOOOOOOOOOOOH!!!!! ACTUALLY I NEED TO NORMALIZE IT< THE TRANSFORM IS WRONG!!!!
-    dataset1 = datasets.CIFAR10('../data', train=True, download=True,transform=transform)
-    dataset2 = datasets.CIFAR10('../data', train=False,transform=transform)
+    ##abort()
+    transform = transforms.Compose([
+      transforms.RandomHorizontalFlip(), # randomly flip and rotate
+      transforms.RandomRotation(10),transforms.ToTensor(),
+      transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
+    # Select training_set and testing_set
+    dataset1 = datasets.CIFAR10("../data", train= True,download=True,transform = transform)
+
+    dataset2 = datasets.CIFAR10("../data", train= False,download=True,transform = transform)
 
 
 # Data Loaders : These also allow us to test performance ad-hoc
