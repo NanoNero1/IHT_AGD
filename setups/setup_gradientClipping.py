@@ -12,5 +12,5 @@ setup_iHTAGD_SP70_K10_B10 = {
     "kappa":10.0,
     "beta":300.0}
 
-setups = [setup_clipGradientIHTAGD_SP95_K10_B10,
-          setup_iHTAGD_SP95_K10_B10 ]
+setups = [setup_clipGradientIHTAGD_SP70_K10_B10,
+          setup_iHTAGD_SP70_K10_B10 ]
