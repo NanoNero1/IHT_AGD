@@ -12,7 +12,7 @@ from pathlib import Path
   Input: 28x28 pixels,
   Target: digit 0-9,
 """
-datasetChoice = "MNIST"
+datasetChoice = "CIFAR10"
 
 match datasetChoice:
   case "MNIST":
@@ -46,9 +46,9 @@ match datasetChoice:
       transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
     # Select training_set and testing_set
-    dataset1 = datasets.CIFAR10("../data", train= True,download=True,transform = transform)
+    dataset1 = datasets.CIFAR10("../CIFAR", train= True,download=True,transform = transform)
 
-    dataset2 = datasets.CIFAR10("../data", train= False,download=True,transform = transform)
+    dataset2 = datasets.CIFAR10("../CIFAR", train= False,download=True,transform = transform)
 
 
 # Data Loaders : These also allow us to test performance ad-hoc
