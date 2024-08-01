@@ -36,6 +36,17 @@ match datasetChoice:
 
     # setup information?
   case "CIFAR":
+
+    # Checking if data is already downloaded
+    p = Path('../CIFAR/cifar-10-batches-py/')
+    print("THIS IS TO CHECK THAT THE DATA IS NOT BEING DOWNLOADED EVERY TIME!")
+    if p.exists():
+      pass
+    else:
+      #pass
+      abort()
+      raise("Raise Error - data not found")
+
     # NOTE Right now CIFAR shouldn't work - I forgot why unfortunately
     # note to self: I just remembered! we are applying the MNIST transformation to CIFAR,
     # obviously this is a bad idea. CHECK: is CIFAR already normalized, if it isn't, normalize it
