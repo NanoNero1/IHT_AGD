@@ -12,7 +12,7 @@ from pathlib import Path
   Input: 28x28 pixels,
   Target: digit 0-9,
 """
-datasetChoice = "CIFAR10"
+datasetChoice = "CIFAR"
 
 match datasetChoice:
   case "MNIST":
