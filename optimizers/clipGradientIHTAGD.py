@@ -15,7 +15,7 @@ class clipGradientIHTAGD(ihtAGD):
   def clipGradients(self,clipAmt=0.001):
     print("I AM CLIPPING!!!!!!")
 
-    print([group for group in self.param_groups])
+    print(len(self.param_groups))
     print("these are the groups")
     abort()
 
