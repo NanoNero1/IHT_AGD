@@ -114,12 +114,12 @@ class CIFAR_convNet(nn.Module):
         self.fc2 = nn.Linear(500, 10)
         
     def forward(self, x):
-        x = self.pool(F.elu(self.conv1(x)))
-        x = self.pool(F.elu(self.conv2(x)))
-        x = self.pool(F.elu(self.conv3(x)))
+        x = self.pool(F.sigmoid(self.conv1(x)))
+        x = self.pool(F.sigmoid(self.conv2(x)))
+        x = self.pool(F.sigmoid(self.conv3(x)))
         
         # Flatten the image
         x = x.view(-1, 64*4*4)
-        x = F.elu(self.fc1(x))
+        x = F.sigmoid(self.fc1(x))
         x = self.fc2(x)
         return x
