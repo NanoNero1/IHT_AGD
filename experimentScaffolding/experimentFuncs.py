@@ -43,11 +43,10 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     print(f"!!!!!!!!!!!! THIS IS EPOCH: {epoch}")
 
     # Call to run one epoch of training
-    #train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=kwargs['run'])
+    train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=kwargs['run'])
     
 
-    scheduler.step()
-  
+    #scheduler.step()
   return model
 
 # Trains the network
