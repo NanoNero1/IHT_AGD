@@ -5,6 +5,7 @@ from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
 from IHT_AGD.optimizers.untouchedBias_ihtAGD import untouchedBias_ihtAGD
 from IHT_AGD.optimizers.clipGradientIHTAGD import clipGradientIHTAGD
 from IHT_AGD.optimizers.ztSparse_ihtAGD import ztSparse_ihtAGD
+from IHT_AGD.optimizers.nativePytorchSGD import dimitriPytorchSGD
 import sys
 
 def str_to_class(classname):
@@ -31,8 +32,7 @@ def chooseOptimizer(setup,model,trialNumber,device=None):
         pass
         optimizer = untouchedIhtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model)
     case "pytorchSGD":
-        pass
-        #optimizer = dimitriPytorchSGD(model.parameters(),beta=3.0)#torch.optim.SGD(model.parameters(), lr=1.0/3.0)
+        optimizer = dimitriPytorchSGD(model.parameters(),beta=3.0)#torch.optim.SGD(model.parameters(), lr=1.0/3.0)
     case _:
         pass
         #action-default
