@@ -29,6 +29,8 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
 
   # This implementation uses a Learning Rate Scheduler
   scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=6, gamma=0.2)
+  
+  model.train()
   for epoch in range(1, setup["epochs"] + 1):
 
     #print(optimizer.methodName)

@@ -10,8 +10,6 @@ from neptune import Run
 
 def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,test_loader=None,run=None):
 
-    model.train()
-
     # In case we get NaN, setting this to true should detect this
     # BUG: for some reason this fails to capture NaNs
     torch.autograd.set_detect_anomaly(True)
