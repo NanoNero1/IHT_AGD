@@ -21,8 +21,16 @@ setup_vanillaAGD = {
     "kappa":3.0,
     "beta":100.0}
 
+setup_clipGradientIHTAGD_SP70_K10_B10 = {
+    "setupID":"setup_clipGradientIHTAGD_SP70_K10_B10",
+    "scheme":"clipGradientIHTAGD" ,
+    "sparsity":0.70,
+    "kappa":10.0,
+    "beta":600.0}
 
-setups = [setup_vanillaAGD,
+
+setups = [setup_clipGradientIHTAGD_SP70_K10_B10,
+          setup_vanillaAGD,
           setup_nativeSGD,
           setup_vanillaSGD,
             setup_IHTAGD_SP70_K10_B10]
