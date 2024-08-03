@@ -13,13 +13,13 @@ setup_IHTAGD_SP70_K10_B10 = {
     "scheme":"ihtAGD" ,
     "sparsity":0.70,
     "kappa":3.0,
-    "beta":6000.0}
+    "beta":100.0}
 
 setup_vanillaAGD = {
     "setupID":"setup_vanillaAGD_K10_B10",
     "scheme":"vanillaAGD" ,
     "kappa":3.0,
-    "beta":6000.0}
+    "beta":100.0}
 
 
 setups = [setup_vanillaAGD,
