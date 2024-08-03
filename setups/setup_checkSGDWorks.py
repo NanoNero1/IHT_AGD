@@ -18,7 +18,6 @@ setup_IHTAGD_SP70_K10_B10 = {
 setup_vanillaAGD = {
     "setupID":"setup_vanillaAGD_K10_B10",
     "scheme":"vanillaAGD" ,
-    "sparsity":0.70,
     "kappa":10.0,
     "beta":60.0}
 
