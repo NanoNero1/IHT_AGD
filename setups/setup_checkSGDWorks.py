@@ -17,5 +17,5 @@ setup_IHTAGD_SP70_K10_B10 = {
 
 
 setups = [setup_nativeSGD,
-            setup_IHTAGD_SP70_K10_B10,
-            setup_vanillaSGD ]
+          setup_vanillaSGD,
+            setup_IHTAGD_SP70_K10_B10]
