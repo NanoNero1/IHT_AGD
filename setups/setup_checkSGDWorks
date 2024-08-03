@@ -9,6 +9,5 @@ setup_vanillaSGD = {
     "beta":10.0}
 
 
-setups = [setup_ihtAGD_SP90_K10_B20,
-          setup_ihtAGD_SP90_K10_B10,
-          setup_ihtAGD_SP90_K5_B10]
+setups = [setup_nativeSGD,
+          setup_vanillaSGD ]
