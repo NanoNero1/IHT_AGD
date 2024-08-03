@@ -1,0 +1,14 @@
+setup_nativeSGD = {
+    "setupID":"setup_nativeSGD",
+    "scheme":"dimitriPytorchSGD" ,
+    "lr":0.1}
+
+setup_vanillaSGD = {
+    "setupID":"setup_vanillaSGD",
+    "scheme":"vanillaSGD" ,
+    "beta":10.0}
+
+
+setups = [setup_ihtAGD_SP90_K10_B20,
+          setup_ihtAGD_SP90_K10_B10,
+          setup_ihtAGD_SP90_K5_B10]
