@@ -12,7 +12,7 @@ from pathlib import Path
   Input: 28x28 pixels,
   Target: digit 0-9,
 """
-datasetChoice = "MNIST"
+datasetChoice = "CIFAR"
 
 match datasetChoice:
   case "MNIST":
@@ -61,5 +61,5 @@ match datasetChoice:
 
 
 # Data Loaders : These also allow us to test performance ad-hoc
-train_loader = torch.utils.data.DataLoader(dataset1,batch_size=512,shuffle=False,drop_last=True,num_workers=2)
-test_loader = torch.utils.data.DataLoader(dataset2,batch_size=512,shuffle=False,drop_last=True,num_workers=2)
+train_loader = torch.utils.data.DataLoader(dataset1,batch_size=2048,shuffle=False,drop_last=True,num_workers=2)
+test_loader = torch.utils.data.DataLoader(dataset2,batch_size=2048,shuffle=False,drop_last=True,num_workers=2)
