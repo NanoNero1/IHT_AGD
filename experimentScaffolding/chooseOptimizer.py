@@ -30,9 +30,9 @@ def chooseOptimizer(setup,model,trialNumber,device=None):
          optimizer = ihtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model,device = device)
     case "untouchedIhtAGD":
         pass
-        optimizer = untouchedIhtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model)
+        #optimizer = untouchedIhtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model)
     case "pytorchSGD":
-        optimizer = dimitriPytorchSGD(model.parameters(),beta=3.0)#torch.optim.SGD(model.parameters(), lr=1.0/3.0)
+        optimizer = dimitriPytorchSGD(model.parameters())#torch.optim.SGD(model.parameters(), lr=1.0/3.0)
     case _:
         pass
         #action-default
