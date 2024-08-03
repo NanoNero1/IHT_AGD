@@ -12,7 +12,7 @@ from pathlib import Path
   Input: 28x28 pixels,
   Target: digit 0-9,
 """
-datasetChoice = "CIFAR"
+datasetChoice = "MNIST"
 
 match datasetChoice:
   case "MNIST":
@@ -35,7 +35,7 @@ match datasetChoice:
     dataset2 = datasets.MNIST('../data', train=False,download=True,transform=transform)
 
     # setup information?
-  case "MNIST":
+  case "CIFAR":
 
     # Checking if data is already downloaded
     p = Path('../CIFAR/cifar-10-batches-py/')
