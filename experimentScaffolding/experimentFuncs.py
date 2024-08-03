@@ -19,7 +19,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
       model = MNIST_convNet().to(kwargs['device'])
       #model = basicNeuralNet().to(kwargs['device'])
     case "CIFAR":
-      model = MNIST_convNet().to(kwargs['device'])
+      model = CIFAR_convNet().to(kwargs['device'])
       #model = resnet18().to(kwargs['device'])
       print('the CIFAR MODEL IS LOADED')
     case "IMAGENET":
