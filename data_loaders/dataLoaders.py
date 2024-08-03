@@ -35,7 +35,7 @@ match datasetChoice:
     dataset2 = datasets.MNIST('../data', train=False,download=True,transform=transform)
 
     # setup information?
-  case "CIFAR":
+  case "MNIST":
 
     # Checking if data is already downloaded
     p = Path('../CIFAR/cifar-10-batches-py/')
