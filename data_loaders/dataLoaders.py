@@ -12,10 +12,10 @@ from pathlib import Path
   Input: 28x28 pixels,
   Target: digit 0-9,
 """
-datasetChoice = "MNIST"
+datasetChoice = "CIFAR"
 
 match datasetChoice:
-  case "CIFAR":
+  case "MNIST":
 
     # Data Collection and Normalizing so that it's suitable for input to the neural network
     transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.1307,), (0.3081,))])
