@@ -15,7 +15,7 @@ from pathlib import Path
 datasetChoice = "MNIST"
 
 match datasetChoice:
-  case "MNIST":
+  case "CIFAR":
 
     # Data Collection and Normalizing so that it's suitable for input to the neural network
     transform=transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.1307,), (0.3081,))])
