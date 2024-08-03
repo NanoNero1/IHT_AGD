@@ -12,7 +12,7 @@ class clipGradientIHTAGD(ihtAGD):
     self.methodName = "clipGradientIHTAGD"
     self.alpha = self.beta / self.kappa
 
-  def clipGradients(self,clipAmt=0.0001):
+  def clipGradients(self,clipAmt=0.01):
     print("I AM CLIPPING!!!!!!")
 
     #print(len(self.param_groups))

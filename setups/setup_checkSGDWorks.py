@@ -26,7 +26,7 @@ setup_clipGradientIHTAGD_SP70_K10_B10 = {
     "scheme":"clipGradientIHTAGD" ,
     "sparsity":0.70,
     "kappa":10.0,
-    "beta":600.0}
+    "beta":60.0}
 
 
 setups = [setup_clipGradientIHTAGD_SP70_K10_B10,
