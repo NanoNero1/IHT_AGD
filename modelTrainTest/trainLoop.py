@@ -66,7 +66,7 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
         # Optimization Step
         optimizer.currentDataBatch = (data,target)
         optimizer.step()
-        
+
         # ###LOG### On every 10 iterations, we can print out some information
         # if batch_idx % 10 == 0 :
         #     print('Train Epoch: {} [{}/{} ({:.0f}%)]\tLoss: {:.6f}'.format(

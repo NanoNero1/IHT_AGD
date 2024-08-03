@@ -5,6 +5,8 @@ from IHT_AGD.architectures.convNets import basicNeuralNet
 import torch
 from IHT_AGD.modelTrainTest.trainLoop import train
 from torchvision.models import resnet50
+import torch.nn.functional as F
+import torch.nn as nn
 
 import json 
 
@@ -28,8 +30,11 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
   optimizer.loggingInterval = 1
 
   # This implementation uses a Learning Rate Scheduler
-  scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=6, gamma=0.2)
-  
+  #scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=6, gamma=0.2)
+
+  #We don't need more than these arguments
+  train_net([],model, kwargs['device'], kwargs['train_loader'], optimizer, epochs=setup["epochs"],run=kwargs['run'])
+  """
   model.train()
   for epoch in range(1, setup["epochs"] + 1):
 
@@ -38,10 +43,61 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     print(f"!!!!!!!!!!!! THIS IS EPOCH: {epoch}")
 
     # Call to run one epoch of training
-    train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=kwargs['run'])
+    #train([],model, kwargs['device'], kwargs['train_loader'], optimizer, epoch,trialNumber,run=kwargs['run'])
+    
 
     scheduler.step()
+  """
   return model
+
+# Trains the network
+#def train_net(epochs, path_name, net, optimizer):
+def train_net(args, model, device, train_loader, optimizer=None, epochs=1,run=None):
+    """ Train the network """
+    print(optimizer)
+    #writer = SummaryWriter(path_name)
+    n_iter = 0
+
+    # Dump info on the network before running any training step
+    #tb_dump(0, net, writer)
+
+    criterion = nn.CrossEntropyLoss()
+
+    for epoch in range(epochs):  # Loop over the dataset multiple times
+        for i, data in enumerate(train_loader, 0):
+            # Get the inputs
+            inputs, labels = data
+            inputs = inputs.to(device)
+            labels = labels.to(device)
+
+            # Zero the parameter gradients
+            optimizer.zero_grad()
+
+            # Forward + backward + optimize
+            outputs = model(inputs)
+            loss = criterion(outputs, labels)
+
+            # NOTE: maybe this is the thing that causes a Neptune NoneError
+            print(f"print loss:{loss}")
+            ###LOG### Loss
+            #abort()
+            run[f"trials/{optimizer.trialNumber}/{optimizer.setupID}/loss"].append(loss)
+
+            loss.backward()
+
+            def getNewGrad(parameters):
+              model.params = parameters
+              newOutput = model(data)
+              loss = criterion(newOutput, labels)
+              loss.backward()
+
+            optimizer.currentDataBatch = (data,labels)
+            optimizer.step()
+
+
+
+
+    print('Finished Training')
 
 def runMainExperiment(setups,epochs=5,trialNumber=0,datasetChoice="MNIST",**kwargs):
 
