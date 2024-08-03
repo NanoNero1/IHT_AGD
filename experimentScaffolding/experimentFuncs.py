@@ -33,8 +33,8 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
   #scheduler = torch.optim.lr_scheduler.StepLR(optimizer, step_size=6, gamma=0.2)
 
   #We don't need more than these arguments
-  train_net([],model, kwargs['device'], kwargs['train_loader'], optimizer, epochs=setup["epochs"],run=kwargs['run'])
-  """
+  #train_net([],model, kwargs['device'], kwargs['train_loader'], optimizer, epochs=setup["epochs"],run=kwargs['run'])
+  
   model.train()
   for epoch in range(1, setup["epochs"] + 1):
 
@@ -47,7 +47,7 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
     
 
     scheduler.step()
-  """
+  
   return model
 
 # Trains the network
