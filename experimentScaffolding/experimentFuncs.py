@@ -4,7 +4,7 @@ from IHT_AGD.architectures.convNets import MNIST_convNet
 from IHT_AGD.architectures.convNets import basicNeuralNet
 import torch
 from IHT_AGD.modelTrainTest.trainLoop import train
-from torchvision.models import resnet50
+from torchvision.models import resnet18
 import torch.nn.functional as F
 import torch.nn as nn
 
@@ -18,10 +18,10 @@ def runOneExperiment(setup=None,trialNumber=None,datasetChoice="MNIST",**kwargs)
       model = MNIST_convNet().to(kwargs['device'])
       #model = basicNeuralNet().to(kwargs['device'])
     case "CIFAR":
-      model = resnet50().to(kwargs['device'])
+      model = resnet18().to(kwargs['device'])
       print('the CIFAR MODEL IS LOADED')
     case "IMAGENET":
-      model = resnet50().to(kwargs['device'])
+      model = resnet18().to(kwargs['device'])
       print("THEEEEEEEEEEEEEE MODEL IS NOW RESNET!")
 
   #optimizer = chooseOptimizer(setup,model,trialNumber,device=kwargs['device'])
