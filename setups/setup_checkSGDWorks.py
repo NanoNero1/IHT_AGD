@@ -16,6 +16,6 @@ setup_IHTAGD_SP70_K10_B10 = {
     "beta":600.0}
 
 
-setups = [setup_IHTAGD_SP70_K10_B10,
-          setup_nativeSGD,
-          setup_vanillaSGD ]
+setups = [setup_nativeSGD,
+            setup_IHTAGD_SP70_K10_B10,
+            setup_vanillaSGD ]
