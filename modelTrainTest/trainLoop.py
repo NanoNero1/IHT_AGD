@@ -39,7 +39,8 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
         print(f"print loss:{loss}")
         ###LOG### Loss
         #abort()
-        run[f"trials/{optimizer.trialNumber}/{optimizer.setupID}/loss"].append(loss)
+        #run[f"trials/{optimizer.trialNumber}/{optimizer.setupID}/loss"].append(loss)
+        run[f"trials/{0}/{"dummyLoss"}/loss"].append(loss)
 
         loss.backward()
 
