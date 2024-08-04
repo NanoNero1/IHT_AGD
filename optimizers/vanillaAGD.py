@@ -1,7 +1,7 @@
 import torch
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
 import torch.nn.functional as F
-from torch import nan, inf
+from torch import Tensor, nan, inf
 
 
 ###############################################################################################################################################################
@@ -37,15 +37,12 @@ class vanillaAGD(vanillaSGD):
 
     #add a nan
     with torch.no_grad():
-      self.param_groups[0]["params"][1][5].grad = nan
+      self.param_groups[0]["params"][1][5].grad = Tensor([nan])
       self.param_groups[0]["params"][1][6] = inf
 
     if self.iteration == 5:
-      if self.checkForNAN():
-        print("WE FOUND A NAN")
-        abort()
-        
-      #self.checkForINF()
+      self.checkForNAN()
+      self.checkForINF()
       print('NO NAN OR INF')
       abort()
 
