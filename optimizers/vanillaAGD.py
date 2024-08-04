@@ -41,7 +41,7 @@ class vanillaAGD(vanillaSGD):
     if self.iteration == 5:
       #add a nan
       with torch.no_grad():
-        self.param_groups[0]["params"][1].grad[5] = Tensor([nan]).to(self.device)
+        (self.param_groups[0]["params"][1].grad)[5] = Tensor([nan]).to(self.device)
         self.param_groups[0]["params"][1][6] = inf
 
       #self.checkForNAN()
