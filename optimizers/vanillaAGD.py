@@ -16,6 +16,7 @@ class vanillaAGD(vanillaSGD):
     self.alpha = self.beta / self.kappa
     self.sqKappa = pow(self.kappa,0.5)
     self.loss_zt = 0.0
+    self.device = kwargs['device']
 
 
     for p in self.paramsIter():
@@ -37,11 +38,11 @@ class vanillaAGD(vanillaSGD):
 
     #add a nan
     with torch.no_grad():
-      self.param_groups[0]["params"][1][5].grad = Tensor([nan])
+      self.param_groups[0]["params"][1][5].grad = Tensor([nan]).to(self.device)
       self.param_groups[0]["params"][1][6] = inf
 
     if self.iteration == 5:
-      self.checkForNAN()
+      #self.checkForNAN()
       self.checkForINF()
       print('NO NAN OR INF')
       abort()
