@@ -36,13 +36,15 @@ class vanillaAGD(vanillaSGD):
     print(f"speed iteration {self.iteration}")
     self.logging()
 
-    #add a nan
-    with torch.no_grad():
-      self.param_groups[0]["params"][1][5].grad = Tensor([nan]).to(self.device)
-      self.param_groups[0]["params"][1][6] = inf
+    
 
     if self.iteration == 5:
-      #self.checkForNAN()
+      #add a nan
+      with torch.no_grad():
+        self.param_groups[0]["params"][1][5].grad = Tensor([nan]).to(self.device)
+        self.param_groups[0]["params"][1][6] = inf
+
+      self.checkForNAN()
       self.checkForINF()
       print('NO NAN OR INF')
       abort()
