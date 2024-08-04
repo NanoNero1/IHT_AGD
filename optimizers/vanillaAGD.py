@@ -42,9 +42,9 @@ class vanillaAGD(vanillaSGD):
       #add a nan
       with torch.no_grad():
         (self.param_groups[0]["params"][1].grad)[5] = Tensor([nan]).to(self.device)
-        self.param_groups[0]["params"][1][6] = inf
+        (self.param_groups[0]["params"][1].grad)[6] = Tensor([inf]).to(self.device)
 
-      self.checkForNAN()
+      #self.checkForNAN()
       self.checkForINF()
       print('NO NAN OR INF')
       abort()
