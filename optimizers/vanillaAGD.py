@@ -45,9 +45,9 @@ class vanillaAGD(vanillaSGD):
         print("WE FOUND A NAN")
         abort()
         
-    #self.checkForINF()
-    print('NO NAN OR INF')
-    abort()
+      #self.checkForINF()
+      print('NO NAN OR INF')
+      abort()
 
     self.updateWeights()
     self.iteration += 1
