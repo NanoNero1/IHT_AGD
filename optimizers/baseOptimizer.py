@@ -116,6 +116,22 @@ class myOptimizer(Optimizer):
         yield p
 
 
+  def checkForNAN(self):
+    for p in self.paramsIter():
+      
+      if torch.isnan(p.data).any() or torch.isnan(p.grad).any():
+        return True
+    return False
+  
+  def checkForINF(self):
+    for p in self.paramsIter():
+      if torch.isinf(p.data).any() or torch.isinf(p.grad).any():
+        return True
+    return False
+
+
+
+
   ### These methods are mandatory to be overridden after inheritance
   ### CHECK: there should be an error if they are not implemented
   """ Desc: the main function that the optimizer gets called on every iteration """

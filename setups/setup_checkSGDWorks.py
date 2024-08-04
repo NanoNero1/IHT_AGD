@@ -29,8 +29,8 @@ setup_clipGradientIHTAGD_SP70_K10_B10 = {
     "beta":60.0}
 
 
-setups = [setup_clipGradientIHTAGD_SP70_K10_B10,
-          setup_vanillaAGD,
+setups = [setup_vanillaAGD,
+          setup_clipGradientIHTAGD_SP70_K10_B10,
           setup_nativeSGD,
           setup_vanillaSGD,
             setup_IHTAGD_SP70_K10_B10]

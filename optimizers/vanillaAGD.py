@@ -1,6 +1,7 @@
 import torch
 from IHT_AGD.optimizers.vanillaSGD import vanillaSGD
 import torch.nn.functional as F
+from torch import nan, inf
 
 
 ###############################################################################################################################################################
@@ -33,6 +34,20 @@ class vanillaAGD(vanillaSGD):
     print("This is the fixed Accelerated Gradient Descent")
     print(f"speed iteration {self.iteration}")
     self.logging()
+
+    #add a nan
+    self.param_groups[0][1]["params"][5] = nan
+    self.param_groups[0][1]["params"][6] = inf
+
+    if self.iteration == 5:
+      if self.checkForNAN():
+        print("WE FOUND A NAN")
+        abort()
+        
+    #self.checkForINF()
+    print('NO NAN OR INF')
+    abort()
+
     self.updateWeights()
     self.iteration += 1
 
