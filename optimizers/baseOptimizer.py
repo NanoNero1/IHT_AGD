@@ -118,16 +118,24 @@ class myOptimizer(Optimizer):
 
   def checkForNAN(self):
     for p in self.paramsIter():
-      
-      if torch.isnan(p.data).any() or torch.isnan(p.grad).any():
-        return True
-    return False
-  
+      #torch.isnan(p.data).any() or
+      if  torch.isnan(p.grad).any():
+        print('nan grad detected')
+        abort()
+      if torch.isnan(p.data).any():
+        print('nan weight detected')
+        abort()
+
   def checkForINF(self):
     for p in self.paramsIter():
-      if torch.isinf(p.data).any() or torch.isinf(p.grad).any():
-        return True
-    return False
+      #torch.isnan(p.data).any() or
+      if  torch.isinf(p.grad).any():
+        print('inf grad detected')
+        abort()
+      if torch.isinf(p.data).any():
+        print('inf weight detected')
+        abort()
+
 
 
 
