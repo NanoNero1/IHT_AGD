@@ -36,8 +36,9 @@ class vanillaAGD(vanillaSGD):
     self.logging()
 
     #add a nan
-    self.param_groups[0]["params"][1][5] = nan
-    self.param_groups[0]["params"][1][6] = inf
+    with torch.no_grad():
+      self.param_groups[0]["params"][1][5] = nan
+      self.param_groups[0]["params"][1][6] = inf
 
     if self.iteration == 5:
       if self.checkForNAN():
