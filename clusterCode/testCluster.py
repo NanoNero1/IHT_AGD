@@ -1,3 +1,4 @@
+"""Desc: a simple script to see if we can write to the storage on the cluster"""
 print(__file__)
 
 import os

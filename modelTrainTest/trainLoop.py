@@ -10,9 +10,6 @@ from neptune import Run
 
 def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,test_loader=None,run=None):
 
-    #model.train()
-
-    # In case we get NaN, setting this to true should detect this
     # BUG: for some reason this fails to capture NaNs
     torch.autograd.set_detect_anomaly(True)
 
@@ -23,13 +20,6 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
         data, target = data.to(device), target.to(device)
         optimizer.zero_grad()
 
-        # Important to check if the gradients are truly none
-        #for group in optimizer.param_groups:
-        #  for p in group['params']:
-        #    print(p.grad)
-
-        print("THIS SHOULD GIVE AN OUTPUT! IF NEPTUNE IS JUST A WARNING")
-
         # Generating Predictions and Calculating Loss
         output = model(data)
         output = F.log_softmax(output, dim=1)
@@ -37,30 +27,20 @@ def train(args, model, device, train_loader, optimizer, epoch,trialNumber=None,t
 
         # NOTE: maybe this is the thing that causes a Neptune NoneError
         print(f"print loss:{loss}")
-        ###LOG### Loss
-        #abort()
-        #run[f"trials/{optimizer.trialNumber}/{optimizer.setupID}/loss"].append(loss)
-        run[f"trials/{0}/{"dummyLoss"}/loss"].append(loss)
+        # Logging the loss to neptune
+        run[f"trials/{optimizer.trialNumber}/{optimizer.setupID}/loss"].append(loss)
 
         loss.backward()
 
         print(loss)
 
-
-        ###INTERNAL FUNCTIONS TO FEED TO OPTIMIZER###
-
-
-        #Really, we want to get rid of this!
-        # NOTE: we should try to pass data on step? - nope!
-
+        ### DEPRECATED ### INTERNAL FUNCTIONS TO FEED TO OPTIMIZER### 
         def getNewGrad(parameters):
           model.params = parameters
           newOutput = model(data)
           newOutput = F.log_softmax(newOutput, dim=1)
           loss = F.nll_loss(newOutput, target)
           loss.backward()
-
-        ### GET RID OF THIS TOO
         def getNewTestAccuracy():
           return getTestAccuracy(model,device,test_loader)
 

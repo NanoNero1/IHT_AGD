@@ -18,38 +18,31 @@ def str_to_class(classname):
 def chooseOptimizer(setup,model,trialNumber,device=None):
   match setup["scheme"]:
     case "vanillaSGD":
-         #optimizer = vanillaSGD(model.parameters(),lr=setup["lr"],model=model,beta=setup["beta"])
          optimizer = vanillaSGD(model.parameters(),lr=setup["lr"],model=model,beta=setup["beta"])
     case "ihtSGD":
-         #optimizer = ihtSGD(model.parameters(),sparsity=setup["sparsity"],lr=setup["lr"],model=model,beta=setup["beta"])
          optimizer = ihtSGD(model.parameters(),sparsity=setup["sparsity"],lr=setup["lr"],model=model,beta=setup["beta"],device=device)
     case "vanillaAGD":
-         #I CANT FIX THIS UNTIL DEVICE IS IN THERE!!!!!!!!
          optimizer = vanillaAGD(model.parameters(),kappa=setup["kappa"],beta=setup["beta"],model=model,device=device)
     case "ihtAGD":
          optimizer = ihtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model,device = device)
     case "untouchedIhtAGD":
         pass
-        #optimizer = untouchedIhtAGD(model.parameters(),sparsity=setup["sparsity"],kappa=setup["kappa"],beta=setup["beta"],model=model)
     case "pytorchSGD":
-        optimizer = dimitriPytorchSGD(model.parameters())#torch.optim.SGD(model.parameters(), lr=1.0/3.0)
+        optimizer = dimitriPytorchSGD(model.parameters())
     case _:
         pass
-        #action-default
   optimizer.trialNumber = trialNumber
   return optimizer
 #####################################################################DEPRECATED########################################
 
 
-# NOTE: this is the function currently in use
+""" Desc: this function sets up the optimizer and handles the passing of the parameters"""
 def fixedChooseOptimizer(setup,model,**kwargs):
-  print("test fixed chooose")
 
   # Joining the kwargs with the setup arguments
   keyWordArgs = setup | kwargs
 
   # Filtering the kwargs here, just so that we know what data we give the optimizers
-  # CAREFUL!: is 'del' a safe function?
   keyWordArgsKeys = keyWordArgs.keys()
   badKeys = []
   allowedVars = ['lr','sparsity','alpha','beta','kappa','device','scheme','functionsToHelpTrack','variablesToTrack','run','train_loader',
@@ -59,20 +52,13 @@ def fixedChooseOptimizer(setup,model,**kwargs):
     if key not in allowedVars:
         badKeys.append(key)
 
+  # Sometimes we want to exclude bad parameters, to avoid overwriting
   for badKey in badKeys:
     del keyWordArgs[badKey] 
 
-  # WARNING: using eval/exec/compile - not the most safe idea, is there another way?
-  # I want to avoid passing classes in the setup, just strings/floats so it's json compatible
-  #exec(f"optimizerClass = {setup['scheme']}")
-  
-  # This seems to be safer at least
+  # Initialization of the optimizer
   optimizerClass = str_to_class(setup['scheme'])
-  
   optimizer = optimizerClass(model.parameters(),model=model,**keyWordArgs)
-
-  # NOTE: easier like this
   optimizer.setupID = setup['setupID']
-
 
   return optimizer

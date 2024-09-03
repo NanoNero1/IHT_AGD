@@ -1,3 +1,5 @@
+"""Desc: this file is to check if we can import CUDA"""
+
 import torch
 import torchvision
 # CUDA Check

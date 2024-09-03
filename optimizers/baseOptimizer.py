@@ -40,18 +40,12 @@ class myOptimizer(Optimizer):
 
     print(f"==================================================================================== ITERATION: {self.iteration}")
 
-    # NOTE: iteration is checked here to make the code cleaner
     if self.iteration % self.loggingInterval == 0:
       # Functions to execute
       for function in dir(self):
-        # All of the possible functions to perform
-
-
         if function not in self.functionsToHelpTrack:
           continue
         elif function in self.expensiveFunctions:
-          # TO-DO: we only care about expensive functions actually, 
-          # it's probably fine to log expensive variables on each step
           # Do not compute expensive functions on every step
           if self.iteration % 50 == 0:
             pass
@@ -69,7 +63,6 @@ class myOptimizer(Optimizer):
             pass
           else:
             continue
-          # TO-DO: make it the same as function??
         
         self.run[f"trials/{self.trialNumber}/{self.setupID}/{variable}"].append(eval("self."+variable))
 
@@ -88,19 +81,9 @@ class myOptimizer(Optimizer):
     self.testAccuracy = accuracy
 
   def easyPrintParams(self):
-    # NOTE: the problem with this line is that it might create a NEW tensor (that won't have a gradient)
-    #toPrint = 
     for pInd,p in enumerate(self.paramsIter()):
-      #print(f"pInd: {pInd}")
       if pInd != 3:
         continue
-      ##print(f"Weights: {p.data[:10]}")
-      ##print(f"Gradients: {p.grad[:10]}")
-
-      
-      #print(f"smallGradients {p[9].data}")
-      #print(f"smallGradients {p[9].grad}")
-      #print(f"tryOutSwitch: {p[:10].grad} ")
 
   """ Desc: when we add extra kwargs that aren't recognized, we add them to our variables by default"""
   def dealWithKwargs(self,keywordArgs):
@@ -108,14 +91,13 @@ class myOptimizer(Optimizer):
       setattr(self, key, value)
 
   """ Desc: use it like 'for i in paramsIterator():' """
-
-  # CHECK: that using 'yield' is efficient, does this just pass references or copy the entire tensor?
   def paramsIter(self):
     for group in self.param_groups:
       for p in group['params']:
         yield p
 
 
+  # Functions for checking Float Safety
   def checkForNAN(self):
     for p in self.paramsIter():
       #torch.isnan(p.data).any() or
@@ -141,7 +123,6 @@ class myOptimizer(Optimizer):
 
 
   ### These methods are mandatory to be overridden after inheritance
-  ### CHECK: there should be an error if they are not implemented
   """ Desc: the main function that the optimizer gets called on every iteration """
   @abc.abstractmethod
   def step(self,getNewGrad):

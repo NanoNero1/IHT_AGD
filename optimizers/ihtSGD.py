@@ -31,17 +31,15 @@ class ihtSGD(vanillaSGD):
 
   @torch.no_grad()
   def step(self):
-    print('FIXED IHT SGD')
-    print(f"speed iteration {self.iteration}")
-
-
-    # Sloppy but works
-    #newSparsityIter = np.floor( (self.iteration - 100) / 80)
-    #self.sparsity = min(0.9, 0.5 + 0.1*newSparsityIter)
+    print(f"iteration {self.iteration}")
 
     self.logging()
     self.easyPrintParams()
+    
+    # Main function for the optimizer
     self.compressOrDecompress()
+
+
     self.easyPrintParams()
     self.iteration +=1
 
@@ -115,43 +113,42 @@ class ihtSGD(vanillaSGD):
 
     return cutoff
   
+  # Reduce an interate to a percentage of non-zero weights
   def sparsify(self,iterate=None):
     cutoff = self.getCutOff(iterate=iterate)
 
     for p in self.paramsIter():
       state = self.state[p]
       if iterate == None:
-        print("!!!!!!!!!!! this should sparsify the params")
         p.data[torch.abs(p) <= cutoff] = 0.0
       else:
         # NOTE: torch.abs(p) is wrong, maybe that's the bug
         (state[iterate])[torch.abs(state[iterate]) <= cutoff] = 0.0
   
   # NOTE: Refreeze is not only for the PARAMS!
+  # Makes the iterate match the support it had on the last mask
   def refreeze(self,iterate=None):
-    print('remember we need to give an iterate for refreeeze')
     for p in self.paramsIter():
       state = self.state[p]
-      # TO-DO: make into modular string
-      #p.mul_(state['xt_frozen'])
       if iterate == None:
         p.data *= state['xt_frozen']
       else:
         state[iterate] *= state[f"{iterate}_frozen"]
 
+  # Saves a mask for where an iterate is non-zero
   def freeze(self,iterate=None):
     cutOff = self.getCutOff(iterate=iterate)
 
     for p in self.paramsIter():
       state = self.state[p]
       if iterate == None:
-        # NOTE: I CHECKED IT!
         layer = p.data
         state['xt_frozen'] = (torch.abs(layer) > 0).type(torch.uint8)
       else:
         layer = state[iterate]
         state[f"{iterate}_frozen"] = (torch.abs(layer) > 0).type(torch.uint8)
 
+  # For logging how sparse the network and specific layers are
   def trackingSparsity(self):
     concatWeights = torch.zeros((1)).to(self.device)
     concatLinear = torch.zeros((1)).to(self.device)
@@ -174,13 +171,11 @@ class ihtSGD(vanillaSGD):
       # Sparsity for this layer
       layerSparsity = torch.mean( (torch.abs(layer.data) > 0).type(torch.float) )
       layerName = f"layerSize{torch.numel(layer)}"
-      # NOTE TO SELF: remember, the layer with 10 values isn't strange, it's just the bias layer
 
       # Track the per-layer sparsity with size
       self.run[f"trials/{self.trialNumber}/{self.setupID}/{layerName}"].append(layerSparsity)
 
     # Removing the First Zero
-    print('removed the first zero')
     concatBias = concatBias[1:]
     concatWeights = concatWeights[1:]
     concatLinear = concatLinear[1:] 

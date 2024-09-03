@@ -29,29 +29,13 @@ class vanillaAGD(vanillaSGD):
 
     self.methodName = "vanilla_AGD"
 
-  # NOTE: we want to turn this off?
-  #@torch.no_grad - not sure if the activate it here since we calculate the gradient as nested in this function
   def step(self):
-    print("This is the fixed Accelerated Gradient Descent")
     print(f"speed iteration {self.iteration}")
     self.logging()
 
-    #with torch.no_grad():
-    #    (self.param_groups[0]["params"][5].grad)[5] = Tensor([nan]).to(self.device)
-    #    #(self.param_groups[0]["params"][1].grad)[6] = Tensor([inf]).to(self.device)
-
+    # Safe floats check
     self.checkForNAN()
     self.checkForINF()
-
-    # if self.iteration == 5:
-    #   #add a nan
-      
-
-    #   #self.checkForNAN()
-    #   #self.checkForINF()
-    #   #print('NO NAN OR INF')
-    #   #abort()
-    #   pass
 
     self.updateWeights()
     self.iteration += 1
@@ -60,12 +44,11 @@ class vanillaAGD(vanillaSGD):
 
   def updateWeights(self):
     print("AGD updateWeights")
-    # Update z_t the according to the AGD equation in the note
+    # Update z_t the according to the AGD equation
     with torch.no_grad():
       for p in self.paramsIter():
 
         state = self.state[p]
-
 
         #First Get z_t+
         state['zt'] = (state['zt'] - (state['zt_oldGrad'] / self.beta) )
@@ -73,15 +56,11 @@ class vanillaAGD(vanillaSGD):
         # And then we do the actual update, NOTE: zt is actually z_t+ right now
         state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * state['zt'] + (1.0 / (self.sqKappa + 1.0)) * state['xt']
 
-        #Find the new z_t
-        #state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * (state['zt'] - (state['zt_oldGrad'] / self.beta) ) + (1.0 / (self.sqKappa + 1.0)) * state['xt']
-
-    # CAREFUL! this changes the parameters for the model
+    # careful, this changes the parameters for the model
     self.getNewGrad('zt')
 
     with torch.no_grad():
       for p in self.paramsIter():
-        # CHECK: Is it still the same state?
         state = self.state[p]
         state['zt_oldGrad'] = p.grad.clone().detach()
 
@@ -93,14 +72,12 @@ class vanillaAGD(vanillaSGD):
 
   ##########################################
 
+  # Allows us to compute the gradient from within the optimizer
   def getNewGrad(self,iterate):
     with torch.no_grad():
       for p in self.paramsIter():
         state = self.state[p]
-
-        # CHECK: is the order of operations correct?
         p.data = state[iterate].clone().detach()
-    print('FIXED IHT-AGD')
 
     self.zero_grad()
     data,target = self.currentDataBatch
@@ -112,14 +89,7 @@ class vanillaAGD(vanillaSGD):
     if iterate == "zt":
       self.loss_zt = float(loss.clone().detach())
 
-    
-
-    # CHECK: see if this works as intended
-    #for p in self.paramsIter():
-      #print(p)
-      #print('and now the gradient')
-      #print(p.grad)
-
+  # Copies xt for safekeeping when we swap the parameters
   def copyXT(self):
     with torch.no_grad():
       for p in self.paramsIter():

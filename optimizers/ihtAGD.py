@@ -16,13 +16,8 @@ class ihtAGD(vanillaAGD,ihtSGD):
   def step(self):
     print(f"speed iteration {self.iteration}")
 
-    # Sloppy but works
-    #newSparsityIter = np.floor( (self.iteration - 100) / 80)
-    #self.sparsity = min(0.9, 0.5 + 0.1*newSparsityIter)
     self.easyPrintParams()
     self.logging()
-
-    print('we got this far at least then')
 
     self.compressOrDecompress()
     self.iteration += 1
@@ -40,10 +35,6 @@ class ihtAGD(vanillaAGD,ihtSGD):
   # I checked this, it seems to work
   def truncateAndFreeze(self):
     self.updateWeightsTwo()
-    print('this should work')
-    # define zt
-
-
 
     # Truncate xt
     self.sparsify()
@@ -83,13 +74,11 @@ class ihtAGD(vanillaAGD,ihtSGD):
         #Find the new z_t
         #state['zt'] = (self.sqKappa / (self.sqKappa + 1.0) ) * (state['zt'] - (state['zt_oldGrad'] / self.beta) ) + (1.0 / (self.sqKappa + 1.0)) * state['xt']
 
-    # CAREFUL! this changes the parameters for the model
+    # careful, this changes the parameters for the model
     self.getNewGrad('zt')
 
     with torch.no_grad():
       for p in self.paramsIter():
-        #print(p.grad)
-        # CHECK: Is it still the same state?
         state = self.state[p]
         state['zt_oldGrad'] = p.grad.clone().detach()
 

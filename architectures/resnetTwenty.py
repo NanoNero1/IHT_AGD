@@ -95,6 +95,7 @@ class ResNetCifar(nn.Module):
 
         return nn.Sequential(*layers)
 
+    # Forward Pass
     def forward(self, x):
         x = self.conv1(x)
         x = self.bn1(x)
@@ -107,7 +108,6 @@ class ResNetCifar(nn.Module):
         x = self.avgpool(x)
         x = x.view(x.size(0), -1)
         x = self.fc(x)
-        #x = nn.functional.log_softmax(x, dim=1)
 
         return x
 
