@@ -3,7 +3,7 @@ Welcome to the repository for **Iterative Hard Thresholding (IHT)** applied to *
 
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/PyTorch_logo_black.svg/2560px-PyTorch_logo_black.svg.png" width="128"/>
 
-# IHT-AGD Optimizer ::
+# IHT-AGD Optimizer :bar_chart: 
 This codebase has served as a framework to develop the IHT-AGD algorithm for training sparse deep learning models, however, please note that the optimizer files are outdated. The current best iteration of IHT-AGD are found in the experiment reposiories below.
 
 ## Experiments :alembic:
