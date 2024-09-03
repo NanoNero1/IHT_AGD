@@ -246,7 +246,7 @@ class untouchedIhtAGD(ihtAGD):
     self.kappa = kappa
 
   def sparsify(self):
-    # TO-DO: remember to remove this zero, it is inconsequential, but still remove it in good practice
+
     concatWeights = torch.zeros((1)).to(device)
     for group in self.param_groups:
       for p in group['params']:
